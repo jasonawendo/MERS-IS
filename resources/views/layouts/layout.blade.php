@@ -22,7 +22,7 @@
       <div class="content">
       <div class="logo"><a href="#">ME<span style="color: #E30613;">RS</span></a></div>
         <ul class="links">
-          <li><a href="#">Home</a></li>
+          <li><a href="home">Home</a></li>
           <li><a href="#">About</a></li>
           <li>
             <a href="#" class="desktop-link">Equipment</a>
@@ -36,7 +36,7 @@
             </ul> -->
           </li>
           <li>
-            <a href="#" class="desktop-link">Register</a>
+            <a href="registration" class="desktop-link">Register</a>
   <!--             <input type="checkbox" id="show-services">
             <label for="show-services">Services</label>
             <ul>
@@ -55,7 +55,7 @@
               </li>
             </ul> -->
           </li>
-          <li><a href="#">Login</a></li>
+          <li><a href="login">Login</a></li>
         </ul>
       </div>
       <label for="show-search" class="search-icon"><i class="fas fa-search"></i></label>
