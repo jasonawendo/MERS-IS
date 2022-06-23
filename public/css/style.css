@@ -721,6 +721,7 @@ section{
   text-align: center;
   font-size: 3rem;
   }
+}
 
 @media (max-width: 450px){
   .services .box-container .box{
@@ -760,4 +761,3 @@ section{
     line-height: 2;
   }
 }
-
