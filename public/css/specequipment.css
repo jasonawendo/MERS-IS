@@ -1,0 +1,155 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800&display=swap');
+
+.nav-link {
+    display: block;
+    padding: 0.5rem 1rem;
+    color: #f2f2f2;
+    font-family: bebas neue;
+    font-size: 15pt;
+}
+.nav-link:hover, .nav-link:focus {
+    background-color: #E30613;
+    color: #f2f2f2;
+    text-decoration: none;
+    }
+.nav-link.disabled {
+    color: #f2f2f2;
+    }
+
+.nav-pills .nav-link {
+border-radius: 0.25rem;
+}
+
+.tab-content > .tab-pane {
+display: none;
+}
+
+.tab-content > .active {
+display: block;
+}
+  
+    .btn-equipment {
+    font-family: bebas neue;
+    color: #f2f2f2;
+    background-color: #E30613;
+    margin-right: 4px;
+    margin-bottom: 4px;
+    font-size: 15pt !important;
+    font-weight: 400;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    -ms-border-radius: 30px;
+    border-radius: 30px;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    -webkit-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    padding: 8px 20px; 
+}
+    .btn-equipment:hover{
+    background-color: #f2f2f2;
+    color: #E30613;
+}
+  
+    .user-img{
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    position: relative; 
+}
+
+.col-sm-4{
+    background: radial-gradient(#393939, #010101);
+    padding: 30px;
+}
+  
+  .product-detail-wrap .product-desc {
+    display: block;
+    /*padding-right: 1em;*/ 
+}
+    .product-detail-wrap .product-desc h3 {
+      font-size: 50pt;
+      display: block;
+    color: #f2f2f2;
+    font-family: bebas neue;
+    font-size: 40pt;
+}
+      .product-detail-wrap .product-desc .price {
+        width: 100%;
+        display: inline-block;
+        font-weight: 400;
+        font-size: 30pt;
+        font-family: Montserrat;
+        color: #E30613;
+    }
+    .product-detail-wrap .product-desc .description{
+        font-family: Montserrat;
+        color: #f2f2f2;
+    }
+
+    .product-detail-wrap .product-desc .btn-addtocart i {
+      color: #fff;
+      font-size: 15pt;
+      padding-right: 10px; 
+    }
+
+  
+  .nav-pills {
+    font-size: 12px;
+    font-weight: 400;
+    text-transform: uppercase; 
+}
+    .nav-pills li a {
+      margin-right: 2px;
+      background: #f2f2f2; }
+      .nav-pills li a.active {
+        background: #616161 !important; 
+    }
+  
+  .pills .tab-pane {
+    padding: 2em; 
+    background:  #f2f2f2;
+}
+  
+  .pills .head {
+    font-size: 18pt;
+    text-transform: uppercase;
+    margin-bottom: 30px; 
+}
+  
+  .pills .owner {
+    width: 100%;
+    float: left;
+    margin-bottom: 30px; 
+}
+    .pills .owner .user-img {
+      width: 90px;
+      height: 90px;
+      -webkit-border-radius: 50%;
+      -moz-border-radius: 50%;
+      -ms-border-radius: 50%;
+      border-radius: 50%;
+      float: left; 
+    }
+    .pills .owner .desc {
+      width: calc(100% - 100px);
+      float: right; 
+    }
+      .pills .owner .desc h4 {
+        width: 100%;
+        margin-bottom: 10px;
+        text-transform: uppercase; 
+        font-family: Montserrat;
+    }
+        .pills .owner .desc h4 span { 
+          width: 49%;
+          display: inline-block; 
+        }
+          .pills .owner .desc h4 span:first-child { /*FOR NAME*/
+            font-size: 20pt; 
+            font-family: Montserrat;
+        }
