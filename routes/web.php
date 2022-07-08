@@ -29,18 +29,17 @@ Route::get('/registration', function () {
     return view('registration');
 });
 
-Route::get('/equipment', function () {
-    return view('equipment');
-});
-
 Route::get('/user', function () {
     return view('user');
-});
-
-Route::get('/specequipment', function () {
-    return view('specequipment');
 });
 
 Route::get('/cart', function () {
     return view('cart');
 });
+
+//Index Equipment
+use App\Http\Controllers\EquipmentlistingController; //Added
+Route::get('/equipmentlistings', [EquipmentlistingController::class, 'index']);// Displays all equipment listings
+
+//Show Equipment
+Route::get('/equipmentlistings/{equipmentID}', [EquipmentlistingController::class, 'show']);// Displays Single equipment listing based on ID

@@ -128,7 +128,7 @@ nav .content .links{
 }
 
 /* Dropdown Menu code start */
-/*.content .links ul{
+.content .links ul{
   position: absolute;
   background: #393939;
   top: 80px;
@@ -158,7 +158,7 @@ nav .content .links{
 }
 .content .links ul li:hover ul{
   top: 0;
-}*/
+}
 
 /* Responsive code start */
 @media screen and (max-width: 1250px){

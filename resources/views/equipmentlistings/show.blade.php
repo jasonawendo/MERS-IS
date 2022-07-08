@@ -5,6 +5,12 @@
 <!-- Blade directive used to call name the body as a section that can be 
     referred to when determining which content to place where -->
 
+	<!-- PHP All php code stays here -->
+	@php 
+		$availability = $equipment -> equipmentAvailability;
+	@endphp
+	<!-- PHP-->
+
     <link rel="stylesheet" type="text/css" href="/css/specequipment.css">
 
       <div id="page">
@@ -12,18 +18,15 @@
 			<div class="container">
 				<div class="row row-pb-lg product-detail-wrap" style="padding-top:90px;">
 					<div class="col-sm-8">
-						<img style="width:80%; margin-bottom:20px;" src="https://images.unsplash.com/photo-1431068799455-80bae0caf685?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80">
+						<img style="width:80%; margin-bottom:20px;" src="/img/{{$equipment -> equipmentImage}}">
 					</div>
 					<div class="col-sm-4 card">
 						<div class="product-desc">
-							<h3>Women's Boots Shoes Maca</h3>
-							<p class="price">$68.00 /day</p>
-							<p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-							quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-							consequat.</p>
+							<h3>{{$equipment -> equipmentName}}</h3>
+							<p class="price">${{$equipment -> rentRate}} /day</p>
+							<p class="description">{{$equipment -> equipmentDescription}}.</p>
                             <div class="text-center">
-                                <a href="#" class="btn btn-equipment"><i class="fas fa-plus"></i> Rent</a>
+                                <a href="#" class="btn btn-equipment"><i class="fas fa-plus"></i> Make Rental Request</a>
                             </div>
 					    </div>
 				    </div>
@@ -64,7 +67,13 @@
 
                                     <!-- Specs -->
                                     <div class="tab-pane border fade" id="pills-specs" role="tabpanel" aria-labelledby="pills-specs-tab">
-								      <p>Condition:</p> <p>Value:</p> <p>Availability:</p>
+								      <p>Condition: {{$equipment -> equipmentCondition}}.</p> 
+									  <p>Equipment Value: ${{$equipment -> equipmentValue}}</p> 
+									  @if($availability == 1)
+									  	<p>Availability: Yes</p>
+									  @else
+									  	<p>Availability: No</p>
+									  @endif
 								    </div>
 
 								    <!-- Equipment Owner -->
