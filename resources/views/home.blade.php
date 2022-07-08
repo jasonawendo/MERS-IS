@@ -119,7 +119,7 @@
     </section>
 
     <!-- Testimonials section -->
-  <section class="testimonials" id="services">
+  <section class="testimonials" id="testimonials">
     <div class="testheading">
       <h2>Testimonials</h2>
     </div>
@@ -140,13 +140,13 @@
             </div>
           </div>
             <!-- Reviews -->
-          <div class="reviews">
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="far fa-star"></i> 
-          </div>  
+            <div class="reviews">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="far fa-star"></i> 
+            </div>  
         </div>
         <!-- Actual comments -->
         <div class="client-comment">

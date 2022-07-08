@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800&display=swap');
+.cart{
+    background: url(https://images.unsplash.com/photo-1525328437458-0c4d4db7cab4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80) no-repeat;
+    background-size: cover;
+    background-position: right;
+  }
+  
+  .cart .content{
+    width: 50rem;
+  }
+  
+  .cart .content h3{
+    font-family: bebas neue;
+    font-size: 7rem;
+    text-transform: uppercase;
+    color: #f2f2f2;
+    letter-spacing: 0.5rem;
+  }
+
+  @media (max-width: 900px){
+    section{
+    padding: 3rem 1rem;
+    }
+    .cart{
+    text-align: center;
+    background-position: center;
+    }
+    .cart .content{
+    width: auto;
+    }
+    .cart .content h3{
+    text-align: center;
+    font-size: 4rem;
+  }
+}
+
+@media (max-width: 768px){
+  .cart{
+    width: 100%;
+  }
+  .cart .content{
+  text-align: center;
+  }
+}
+
+/* .cart-page
+{
+  margin: 80px auto;
+} */
+
+.total-price
+{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.total-price table
+{
+  border-top: 3px solid #E30613;
+  width: 100%;
+  max-width: 350px;
+}
+
+td:last-child
+{
+  text-align: right;
+}
+
+th:last-child
+{
+  text-align: right;
+}
+
+@media(max-width:790px)
+{
+  .cart-page
+{
+  margin: 80px auto;
+}
+
+.total-price
+{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.total-price table
+{
+  border-top: 3px solid #E30613;
+  width: 100%;
+}
+}
+
+.table{
+    color:#f2f2f2
+}

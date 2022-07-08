@@ -7,11 +7,9 @@
 	<title>Official Homepage</title>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
 	<link rel="stylesheet" type="text/css" href="/css/style.css">
-	<link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
+  <!-- BOOTSTRAP -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style type="text/css">
-
-    </style>
 </head>
 <header>
   <div class="wrapper">
@@ -20,12 +18,12 @@
       <input type="checkbox" id="show-menu">
       <label for="show-menu" class="menu-icon"><i class="fas fa-bars"></i></label>
       <div class="content">
-      <div class="logo"><a href="#">ME<span style="color: #E30613;">RS</span></a></div>
+      <div class="logo"><a href="home">ME<span style="color: #E30613;">RS</span></a></div>
         <ul class="links">
           <li><a href="home">Home</a></li>
           <li><a href="#">About</a></li>
           <li>
-            <a href="#" class="desktop-link">Equipment</a>
+            <a href="equipmentlistings" class="desktop-link">Equipment</a>
   <!--             <input type="checkbox" id="show-features">
             <label for="show-features">Features</label>
             <ul>
@@ -58,6 +56,7 @@
           <li><a href="login">Login</a></li>
         </ul>
       </div>
+      
       <label for="show-search" class="search-icon"><i class="fas fa-search"></i></label>
       <form action="#" class="search-box">
         <input type="text" placeholder="Type Something to Search..." required>
@@ -133,4 +132,8 @@
         </center>
       </div>
 </footer>
+
+<!-- BOOTSTRAP -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script> 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </html>
