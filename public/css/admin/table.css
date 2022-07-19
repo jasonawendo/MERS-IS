@@ -1,0 +1,31 @@
+table
+  {
+    padding: 10px;
+  }
+
+  .info
+  {
+    color: white;
+  }
+
+  .page-title 
+  {
+  font-family: bebas neue;
+  font-size: 43pt;
+  padding-bottom: 15px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #E30613;
+  }
+  #table .icons
+  {
+    font-size: 14pt;
+    padding: 20px;
+  }
+
+.tbl_img
+  {
+    border-radius: 24px;
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+  }

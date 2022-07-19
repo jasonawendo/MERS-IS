@@ -50,25 +50,25 @@
 
             <!-- Address -->
             <div class="mt-4">
-                <x-jet-label for="address" value="{{ __('Address') }}" />
+                <x-jet-label for="address" value="{{ __('Address-County') }}" />
                 <x-jet-input id="address" class="block mt-1 w-full" type="text" name="address" :value="old('address')" required />
             </div>
 
             <!-- Linkedin -->
             <div class="mt-4">
-                <x-jet-label for="linkedin" value="{{ __('Linkedin') }}" />
+                <x-jet-label for="linkedin" value="{{ __('Linkedin-Link') }}" />
                 <x-jet-input id="linkedin" class="block mt-1 w-full" type="text" name="linkedin" :value="old('linkedin')" required />
             </div>
 
             <!-- Company Name -->
             <div class="mt-4">
                 <x-jet-label for="companyname" value="{{ __('Company Name') }}" />
-                <x-jet-input id="companyname" class="block mt-1 w-full" type="text" name="companyname" :value="old('companyname')" required />
+                <x-jet-input id="companyname" class="block mt-1 w-full" type="text" name="companyname" :value="old('companyname')" />
             </div>
 
             <!-- Website Link -->
             <div class="mt-4">
-                <x-jet-label for="websitelink" value="{{ __('Website Link') }}" />
+                <x-jet-label for="websitelink" value="{{ __('Website-Link') }}" />
                 <x-jet-input id="websitelink" class="block mt-1 w-full" type="text" name="websitelink" :value="old('websitelink')" />
             </div>
 
@@ -90,10 +90,10 @@
             <div class="mt-4">
                 <x-jet-label for="role" value="{{ __('Role') }}" />
                 <select id="role" class="block mt-1 w-full" name="role" >
-                <option value="customer" >
+                <option value="Customer" >
                      Customer
                  </option>
-                 <option value="equipmentowner" >
+                 <option value="Equipment Owner" >
                      Equipment Owner
                  </option>
                  </select>

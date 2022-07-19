@@ -254,7 +254,7 @@
   
   <!-- </body> -->
 
-  @endsection
+@endsection
 
 
 
