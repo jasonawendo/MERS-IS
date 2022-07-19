@@ -58,8 +58,8 @@ Route::get('Customer/equipmentlistings/{equipmentID}', [EquipmentlistingControll
 
 //------------------------------------------ADMIN---------------------------------------------------
 //1. Dashboard
-use App\Http\Controllers\Admin\Dashboard; //Added
-Route::get('Admin/dashboard', [Dashboard::class, 'index']);
+use App\Http\Controllers\Admin\Admindashboard; //Added
+Route::get('Admin/dashboard', [Admindashboard::class, 'index']);
 
 //2. Reports
 use App\Http\Controllers\Admin\Reports; //Added
@@ -132,3 +132,8 @@ Route::get('Admin/ratingsreviews/lowrated', [AdminrrController::class, 'indexUse
 Route::get('Admin/ratingsreviews/customers/{userID}', [AdminrrController::class, 'showCustomers']);
 Route::get('Admin/ratingsreviews/owners/{userID}', [AdminrrController::class, 'showOwners']);
 
+//------------------------------------------INSPECTOR---------------------------------------------------
+
+//1. Dashboard
+use App\Http\Controllers\Inspector\Inspectordashboard; //Added
+Route::get('Inspector/dashboard', [Inspectordashboard::class, 'index']);
