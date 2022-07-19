@@ -1,5 +1,6 @@
 <?php
 
+
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\HomeController;
@@ -19,7 +20,6 @@ Route::get('/', function () {
     return view('home');
 });
 
-
 /*Route::get('/login.blade.php', function () {
     return view('login.blade.php');
 });
@@ -28,21 +28,14 @@ Route::get('/register.blade.php', function () {
     return view('register.blade.php');
 });*/
 
-Route::get('/user', function () {
-    return view('user');
-});
+// Route::get('/user', function () {
+//     return view('user');
+// });
+// Route::get('/cart', function () {
+//     return view('cart');
+// });
 
-Route::get('/cart', function () {
-    return view('cart');
-});
-
-//Index Equipment
-use App\Http\Controllers\EquipmentlistingController; //Added
-Route::get('/equipmentlistings', [EquipmentlistingController::class, 'index']);// Displays all equipment listings
-
-//Show Equipment
-Route::get('/equipmentlistings/{equipmentID}', [EquipmentlistingController::class, 'show']);// Displays Single equipment listing based on ID
-
+//---------------------------------------AUTHENTICATION--------------------------------------------
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -52,7 +45,95 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
-
-
 #Route for user role based login
 Route::get('/redirect', [HomeController::class,'redirect']);
+
+//----------------------------------------CUSTOMER-------------------------------------------------
+
+//Index Equipment
+use App\Http\Controllers\Customer\EquipmentlistingController; //Added
+Route::get('Customer/equipmentlistings', [EquipmentlistingController::class, 'index']);// Displays all equipment listings
+//Show Equipment
+Route::get('Customer/equipmentlistings/{equipmentID}', [EquipmentlistingController::class, 'show']);// Displays Single equipment listing based on ID
+
+//------------------------------------------ADMIN---------------------------------------------------
+//1. Dashboard
+use App\Http\Controllers\Admin\Admindashboard; //Added
+Route::get('Admin/dashboard', [Admindashboard::class, 'index']);
+
+//2. Reports
+use App\Http\Controllers\Admin\Reports; //Added
+Route::get('Admin/reports', [Reports::class, 'index']);
+
+//3. Equipment Listing
+use App\Http\Controllers\Admin\AdminlistingController; //Added
+//Index
+Route::get('Admin/equipmentlistings', [AdminlistingController::class, 'indexAccepted']);// Displays all accepted equipment listings
+Route::get('Admin/equipmentlistings/pending', [AdminlistingController::class, 'indexPending']);// Displays all equipment listings requests
+Route::get('Admin/equipmentlistings/rejected', [AdminlistingController::class, 'indexRejected']);// Displays all accepted equipment listings
+//Show
+Route::get('Admin/equipmentlistings/{equipmentID}', [AdminlistingController::class, 'show']);// Displays Single equipment listing based on ID
+//'Delete'
+Route::post('Admin/equipmentlistings/{equipmentID}', [AdminlistingController::class, 'destroy']);// Displays Single equipment listing based on ID
+
+//4. User
+use App\Http\Controllers\Admin\AdminuserController; //Added
+//Index
+Route::get('Admin/users/requests', [AdminuserController::class, 'indexRegrequests']);
+Route::get('Admin/users/customers', [AdminuserController::class, 'indexCustomers']);
+Route::get('Admin/users/equipmentowners', [AdminuserController::class, 'indexOwners']);
+Route::get('Admin/users/removed', [AdminuserController::class, 'indexRemoved']);
+//Show
+Route::get('Admin/users/{userID}', [AdminuserController::class, 'show']);
+//Remove User
+//'Delete'
+Route::post('Admin/users/{userID}', [AdminuserController::class, 'remove']);
+//Accept or reject registration request
+Route::post('Admin/users/accepted/{userID}', [AdminuserController::class, 'accept']);
+Route::post('Admin/users/rejected/{userID}', [AdminuserController::class, 'reject']);
+
+//5. Quality Inspector
+use App\Http\Controllers\Admin\AdmininspectorController; //Added
+//Index
+Route::get('Admin/inspectors/inspectors', [AdmininspectorController::class, 'indexInspectors']);
+Route::get('Admin/inspectors/jobs', [AdmininspectorController::class, 'indexJobs']);
+Route::get('Admin/inspectors/untasks', [AdmininspectorController::class, 'indexUnassignedTasks']);
+//'Delete'
+Route::post('Admin/inspectors/remove/{userID}', [AdmininspectorController::class, 'remove']);
+//Show
+Route::get('Admin/inspectors/jobs/{IJID}', [AdmininspectorController::class, 'show']);
+//Create 
+Route::get('Admin/inspectors/create', [AdmininspectorController::class, 'createInspector']);
+Route::post('Admin/inspectors/create', [AdmininspectorController::class, 'storeInspector']);
+Route::get('Admin/inspectors/createjob', [AdmininspectorController::class, 'createJob']);
+Route::post('Admin/inspectors/createjob', [AdmininspectorController::class, 'storeJob']);
+Route::get('Admin/inspectors/assigntasks/{IJID}', [AdmininspectorController::class, 'assignTasks']);
+Route::post('Admin/inspectors/assigntasks', [AdmininspectorController::class, 'assign']);
+
+//6. Rentals
+use App\Http\Controllers\Admin\AdminrentalController; //Added
+Route::get('Admin/rentals/requests', [AdminrentalController::class, 'index']);
+Route::get('Admin/rentals/rejectrequests', [AdminrentalController::class, 'indexRejects']);
+Route::get('Admin/rentals/starting', [AdminrentalController::class, 'indexStart']);
+Route::get('Admin/rentals/ongoing', [AdminrentalController::class, 'indexOngoing']);
+Route::get('Admin/rentals/past', [AdminrentalController::class, 'indexPast']);
+
+//7. Orders
+use App\Http\Controllers\Admin\AdminorderController; //Added
+Route::get('Admin/orders/paid', [AdminorderController::class, 'indexPaid']);
+Route::get('Admin/orders/notpaid', [AdminorderController::class, 'indexNotpaid']);
+Route::get('Admin/orders/{orderID}', [AdminorderController::class, 'show']);
+
+//7. Ratings and Reviews
+use App\Http\Controllers\Admin\AdminrrController; //Added
+Route::get('Admin/ratingsreviews/customers', [AdminrrController::class, 'indexCustomers']);
+Route::get('Admin/ratingsreviews/owners', [AdminrrController::class, 'indexOwners']);
+Route::get('Admin/ratingsreviews/lowrated', [AdminrrController::class, 'indexUsers']);
+Route::get('Admin/ratingsreviews/customers/{userID}', [AdminrrController::class, 'showCustomers']);
+Route::get('Admin/ratingsreviews/owners/{userID}', [AdminrrController::class, 'showOwners']);
+
+//------------------------------------------INSPECTOR---------------------------------------------------
+
+//1. Dashboard
+use App\Http\Controllers\Inspector\Inspectordashboard; //Added
+Route::get('Inspector/dashboard', [Inspectordashboard::class, 'index']);
