@@ -76,7 +76,7 @@
 						
 						@foreach($tasks as $task)
 						@php
-							$completed = $job -> isCompleted;
+							$completed = $task -> isCompleted;
 						@endphp
 							<tr>
 								<td>{{$task -> ITID}}</td>

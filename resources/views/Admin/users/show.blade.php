@@ -6,6 +6,7 @@
     referred to when determining which content to place where -->
     @php
       $status = $user -> status;
+      $isDeleted = $user -> isDeleted;
       $rating = $user -> averageRating;
       $stars = 0;
       if ($rating == 1 || $rating == 2)
@@ -123,42 +124,51 @@
                     <tr></tr>
                   @endif
                   
-                  <tr>
-                    <th width="30%">Action</th>
-                    <td width="2%">:</td>
+                  
 
                     @if($status == "accepted")
-                    <td>
-                      <a href="#"><button class="btn btn-info">Contact User</button></a>
-                      <br>
-                      <form action="/Admin/users/{{$user -> id}}"" method="POST">
-                              @csrf
-                              <input id="isDeleted" type="number" name="isDeleted" value="1" hidden>
-                              <input onclick="return confirm('This action will remove this User from the system. Proceed?')"
-                              class="btn btn-danger" type="submit" name="submit" value="Remove User">
-                      </form>
-                    </td>
+                      @if($isDeleted == 0)
+                        <tr>
+                          <th width="30%">Action</th>
+                          <td width="2%">:</td>
+                          <td>
+                            <a href="#"><button class="btn btn-info">Contact User</button></a>
+                            <a href="/Admin/users/{{$user -> role}}/{{$user -> id}}"><button class="btn btn-warning">View User ratings</button></a>
+                            <br>
+                            <form action="/Admin/users/{{$user -> id}}" method="POST">
+                                    @csrf
+                                    <input id="isDeleted" type="number" name="isDeleted" value="1" hidden>
+                                    <input onclick="return confirm('This action will remove this User from the system. Proceed?')"
+                                    class="btn btn-danger" type="submit" name="submit" value="Remove User">
+                            </form>
+                          </td>
+                        </tr>
+                      @else
+                      @endif
+                      
                     @elseif($status == "pending")
-                    <td>
-                      <form action="/Admin/users/accepted/{{$user -> id}}"" method="POST">
-                              @csrf
-                              <input id="accepted" type="text" name="status" value="accepted" hidden>
-                              <input onclick="return confirm('This action will accept this user registration request and add them to the system. Proceed?')"
-                              class="btn btn-success" type="submit" name="submit" value="Accept Registration Request">
-                      </form>
-                      <br>
-                      <form action="/Admin/users/rejected/{{$user -> id}}"" method="POST">
-                              @csrf
-                              <input id="rejected" type="text" name="status" value="rejected" hidden>
-                              <input onclick="return confirm('This action will reject this user registration request and disallow them from accessing the system. Proceed?')"
-                              class="btn btn-danger" type="submit" name="submit" value="Reject Registration Request">
-                      </form>
-                    </td>
+                      <tr>
+                        <th width="30%">Action</th>
+                        <td width="2%">:</td>
+                        <td>
+                          <form action="/Admin/users/accepted/{{$user -> id}}" method="POST">
+                                  @csrf
+                                  <input id="accepted" type="text" name="status" value="accepted" hidden>
+                                  <input onclick="return confirm('This action will accept this user registration request and add them to the system. Proceed?')"
+                                  class="btn btn-success" type="submit" name="submit" value="Accept Registration Request">
+                          </form>
+                          <br>
+                          <form action="/Admin/users/rejected/{{$user -> id}}" method="POST">
+                                  @csrf
+                                  <input id="rejected" type="text" name="status" value="rejected" hidden>
+                                  <input onclick="return confirm('This action will reject this user registration request and disallow them from accessing the system. Proceed?')"
+                                  class="btn btn-danger" type="submit" name="submit" value="Reject Registration Request">
+                          </form>
+                        </td>
+                      </tr>
                     @else
-                    <td></td>
+                      <td></td>
                     @endif
-                    
-                  </tr>
                 </table>
               </div>
             </div>

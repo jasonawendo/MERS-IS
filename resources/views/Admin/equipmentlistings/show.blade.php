@@ -77,12 +77,12 @@
                   <tr>
                     <th width="30%">Created At</th>
                     <td width="2%">:</td>
-                    <td>{{$equipment -> createdAt}}</td>
+                    <td>{{$equipment -> created_at}}</td>
                   </tr>
                   <tr>
                     <th width="30%">Updated At</th>
                     <td width="2%">:</td>
-                    <td>{{$equipment -> updatedAt}}</td>
+                    <td>{{$equipment -> updated_at}}</td>
                   </tr>
                   
                     @if($status == "accepted")

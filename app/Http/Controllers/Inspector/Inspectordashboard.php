@@ -4,29 +4,63 @@ namespace App\Http\Controllers\Inspector;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Users;
+use App\Models\Inspectionjobs;
+use App\Models\Inspectiontasks;
+use Carbon\Carbon;
+// use Illuminate\Support\Facades\Auth;
 
 class Inspectordashboard extends Controller
 {
     public function index()
     {
-        // //Equipment listings count
-        // $equipment = Equipmentlisting::where('status', 'accepted')->where('isDeleted', '0')->count();
-        // //Orders Count
-        // $orders = Orders::where('isDeleted', '0')->count();
-        // //Add up total revenue
-        // $revenue = Orders::where('paymentStatus', '1')->where('isDeleted', '0')->sum('amount');
-        // //Equipmentlisting request count
-        // $listingrequest = Equipmentlisting::where('status', 'pending')->where('isDeleted', '0')->count();
-        // //Rejected listing requests count
-        // $rejectedrequest = Equipmentlisting::where('status', 'rejected')->where('isDeleted', '0')->count();
-        // //Rental requests count
-        // $rentals = Rentals::where('inspectionStatus', 'pending')->where('OwnerStatus', 'pending')->where('isDeleted', '0')->count();
-        // //Inspection job count
-        // $jobs = Inspectionjobs::where('isDeleted', '0')->count();
+        $user = auth()->user();
+        $inspectorID = $user->id; //Gets Inspector ID of signed in inspector
 
-        return view('Inspector/dashboard');
-        // ->with('requests', $requests)
-        // ->with('users', $users)
-        // ->with('equipment', $equipment);
+        $dt = Carbon::now();
+        $date = $dt->toDateTimeString(); //Gets the current date
+
+        $pastjob = Inspectionjobs::
+        where('isDeleted', '0')
+        ->where('inspectorID', $inspectorID)
+        ->where('isCompleted', 1)
+        ->whereDate('dateTimeInspection', '<' , $date)
+        ->count();
+
+        $pendingjob = Inspectionjobs::
+        where('isDeleted', '0')
+        ->where('inspectorID', $inspectorID)
+        ->where('isCompleted', 0)
+        ->whereDate('dateTimeInspection', '<=' , $date)
+        ->count();
+
+        $assignedjob = Inspectionjobs::
+        where('isDeleted', '0')
+        ->where('inspectorID', $inspectorID)
+        ->where('isCompleted', 0)
+        ->whereDate('dateTimeInspection', '>' , $date)
+        ->count();
+
+        $incompletejob = Inspectionjobs::
+        where('isDeleted', '0')
+        ->where('inspectorID', $inspectorID)
+        ->where('isCompleted', 0)
+        ->count();
+
+        $completejob = Inspectionjobs::
+        where('isDeleted', '0')
+        ->where('inspectorID', $inspectorID)
+        ->where('isCompleted', 1)
+        ->count();
+
+        return view('Inspector/dashboard')
+        ->with('pastjob', $pastjob)
+        ->with('pendingjob', $pendingjob)
+        ->with('assignedjob', $assignedjob)
+        
+        ->with('incompletejob', $incompletejob)
+        ->with('completejob', $completejob);
+        
+
     }
 }

@@ -4,6 +4,11 @@
 @section('content') 
 <!-- Blade directive used to call name the body as a section that can be 
     referred to when determining which content to place where -->
+@php
+  $user = auth()->user();
+  $inspectorID = $user->id; //Gets Inspector ID of signed in inspector
+  $inspectorname = $user->fname;
+@endphp
 
 <style type="text/css">
 	  .icons
@@ -28,7 +33,10 @@
   
 <section>
 	<div class="row">
-		<center><h2 class="page-title">Dashboard</h2></center>
+		<center>
+            <h2 class="page-title">Welcome {{$inspectorname}}</h2>
+            <h2 style="color:#fff; font-size:25pt; font-family:bebas neue">Dashboard</h2>
+        </center>
 
 		<div class="col-sm-6 col-xl-4 mb-4">
 			<div class="card">
@@ -38,8 +46,8 @@
                     </div>
                     <div class="ms-3">
                     <p style="font-size:15pt; font-family:bebas neue;" >Past Inspection jobs</p>
-                    <h6>1</h6> <br>
-                    <a href="/Admin/users/requests" class="btn btn-light">Full Detail &nbsp; <i class="fa fa-arrow-right"></i></a>
+                    <h6>{{$pastjob}}</h6> <br>
+                    <a href="/Inspectors/jobs/past" class="btn btn-light">Full Detail &nbsp; <i class="fa fa-arrow-right"></i></a>
                     </div>
                 </div>
 			</div> 
@@ -53,8 +61,8 @@
                         </div>
                     <div class="ms-3">
                         <p style="font-size:15pt; font-family:bebas neue;" >Pending Inspection jobs</p>
-                        <h6>3</h6> <br>
-                        <a href="/Admin/equipmentlistings" class="btn btn-light">Full Detail &nbsp; <i class="fa fa-arrow-right"></i></a>
+                        <h6>{{$pendingjob}}</h6> <br>
+                        <a href="/Inspectors/jobs/pending" class="btn btn-light">Full Detail &nbsp; <i class="fa fa-arrow-right"></i></a>
                     </div>
                 </div>
 			</div> 
@@ -68,95 +76,17 @@
                     </div>
                     <div class="ms-3">
                         <p style="font-size:15pt; font-family:bebas neue;" >Assigned Inspection jobs</p>
-                        <h6>2</h6> <br>
-                        <a href="/Admin/users/requests" class="btn btn-light">Full Detail &nbsp; <i class="fa fa-arrow-right"></i></a>
+                        <h6>{{$assignedjob}}</h6> <br>
+                        <a href="/Inspectors/jobs/assigned" class="btn btn-light">Full Detail &nbsp; <i class="fa fa-arrow-right"></i></a>
                     </div>
                 </div>
 			</div> 
         </div>
-    
-        
-
-        <!-- <div class="col-sm-6 col-xl-3 mb-4">
-                <div class="card">
-                    <div class="rounded d-flex align-items-center justify-content-between p-4">
-                <div class="icons">
-                    <i  class="fa fa-mobile fa-3x"></i>
-                </div>
-            <div class="ms-3">
-                <p style="font-size:15pt; font-family:bebas neue;" >Orders</p>
-                <h6>4</h6> <br>
-            </div>
-            </div>
-                </div> 
-        </div>
-
-        <div class="col-sm-6 col-xl-3 mb-4">
-                <div class="card">
-                    <div class="rounded d-flex align-items-center justify-content-between p-4">
-                <div class="icons">
-                    <i  class="fa fa-briefcase fa-3x"></i>
-                </div>
-            <div class="ms-3">
-                <p style="font-size:15pt; font-family:bebas neue;" >Inspection Jobs</p>
-                <h6>5</h6> <br>
-                <a href="/Admin/inspectors/jobs" class="btn btn-light">Full Detail &nbsp; <i class="fa fa-arrow-right"></i></a>
-            </div>
-            </div>
-                </div> 
-        </div>
-
-        <div class="col-sm-6 col-xl-3 mb-4">
-                <div class="card">
-                    <div class="rounded d-flex align-items-center justify-content-between p-4">
-                <div class="icons">
-                    <i  class="fa fa-tty fa-3x"></i>
-                </div>
-            <div class="ms-3">
-                <p style="font-size:15pt; font-family:bebas neue;" >Equipment listing requests</p>
-                <h6>6</h6> <br>
-                <a href="/Admin/equipmentlistings/pending" class="btn btn-light">Full Detail &nbsp; <i class="fa fa-arrow-right"></i></a>
-            </div>
-            </div>
-                </div> 
-        </div>
-
-        <div class="col-sm-6 col-xl-3 mb-4">
-                <div class="card">
-                    <div class="rounded d-flex align-items-center justify-content-between p-4">
-                <div class="icons">
-                    <i  class="fa fa-coins fa-3x"></i>
-                </div>
-            <div class="ms-3">
-                <p style="font-size:15pt; font-family:bebas neue;" >Total Revenue</p>
-                <h6>7</h6> <br>
-                <a href="/Admin/orders/paid" class="btn btn-light">Full Detail &nbsp; <i class="fa fa-arrow-right"></i></a>
-            </div>
-            </div>
-                </div> 
-        </div>
-
-        <div class="col-sm-6 col-xl-3 mb-4">
-                <div class="card">
-                    <div class="rounded d-flex align-items-center justify-content-between p-4">
-                <div class="icons">
-                    <i  class="fa fa-tty fa-3x"></i>
-                </div>
-            <div class="ms-3">
-                <p style="font-size:15pt; font-family:bebas neue;" >Rental requests</p>
-                <h6>8</h6> <br>
-                <a href="/Admin/rentals/requests" class="btn btn-light">Full Detail &nbsp; <i class="fa fa-arrow-right"></i></a>
-            </div>
-            </div>
-                </div> 
-        </div> -->
 	</div>
 
-	<center><h2 style="color:#fff; font-size:25pt;" class="page-title">Report</h2></center>
+	<center><h2 style="color:#fff; font-size:25pt; font-family:bebas neue">Reports</h2></center>
 	<div class="row">
-		
-
-		<div class="col-sm-12 col-xl-6 mb-4 mx-auto">
+		<div class="col-sm-12 col-xl-5 mb-4 mx-auto">
         <div class="bg-dark rounded h-100 p-4">
             <h6 class="mb-4">Complete : Incomplete jobs ratio</h6>
             <canvas id="el-request"></canvas>
@@ -180,8 +110,8 @@
 	
 
 	// Equipment Listing Request Pie chart
-	var complete = 33;
-	var incomplete = 33;
+	var complete = {{$completejob}};
+	var incomplete = {{$incompletejob}};
 	var ctx2 = $("#el-request").get(0).getContext("2d");
 	    var myChart5 = new Chart(ctx2, {
 	        type: "pie",
