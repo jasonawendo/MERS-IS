@@ -4,6 +4,11 @@
 @section('content') 
 <!-- Blade directive used to call name the body as a section that can be 
     referred to when determining which content to place where -->
+@php
+  $user = auth()->user();
+  $adminID = $user->id; //Gets Inspector ID of signed in inspector
+  $adminName = $user->fname;
+@endphp
 
 <style type="text/css">
 	  .icons
@@ -28,7 +33,10 @@
   
 <section>
 	<div class="row">
-		<center><h2 class="page-title">Dashboard</h2></center>
+		<center>
+			<h2 class="page-title">Welcome {{$adminName}}</h2>
+            <h2 style="color:#fff; font-size:25pt; font-family:bebas neue">Dashboard</h2>
+		</center>
 
 		<div class="col-sm-6 col-xl-3 mb-4">
 			<div class="card">
@@ -149,7 +157,7 @@
     </div>
 	</div>
 
-	<center><h2 style="color:#fff; font-size:25pt;" class="page-title">General Reports</h2></center>
+	<center><h2 style="color:#fff; font-size:25pt; font-family:bebas neue">General reports</h2></center>
 	<div class="row">
 		<div class="col-sm-12 col-xl-8 mb-4">
 	    <div class="bg-dark rounded h-100 p-4">

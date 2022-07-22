@@ -12,6 +12,10 @@
         <center>
           <h2 class="page-title">{{ $title }}</h2>
           <h5  style="color:lightgreen;"> {{ session('msg') }} </h5>
+          @if($title == "View Admin")
+          <a style="color:blue;" href="/Admin/create"><button class="btn btn-warning"><i class="fas fa-plus"></i>     Create Admin Account</button></a>
+          @else
+          @endif
         </center>
         <table id="table" class="display table table-dark table-bordered table-hover table-responsive" cellspacing="0" width="100%">
             <thead class="table-head">
@@ -35,14 +39,24 @@
             @foreach($users as $user)
               @php
                 $status = $user -> status;
+                $role = $user -> role;
+                $isDeleted = $user -> isDeleted;
               @endphp
               <tr>
                 <td>{{$user -> id}}</td>
-                <td>
+                
                   @if($status == "accepted")
+                    @if($role == "Admin")
+                    <td>
+                      <img class="tbl_img" src="/img/admin.jpg">
+                    </td>
+                    @else
+                    <td>
                       <img class="tbl_img" src="/img/{{$user -> profilepic}}">
+                    </td>
+                    @endif
                   @else
-                </td>
+                  <td></td>
                 @endif
                 <td style="text-transform:capitalize;">{{$user -> role}}</td>
                 <td>{{$user -> fname}} {{$user -> lname}}</td>
@@ -59,7 +73,12 @@
                 @else
                       <td style="color:red; font-weight: bold;">Rejected</td>
                 @endif
+
+                @if($role == "Admin")
+                <td></td>
+                @else
                 <td>{{$user -> averageRating}} / 10</td>
+                @endif
                 <td>{{$user -> created_at}}</td>
 
                 
@@ -82,9 +101,24 @@
                     
                   </td>  
                 @else
-                  <td class="icons">
-                    <a style="color:blue;" href="/Admin/users/{{$user -> id}}"><i class="fas fa-eye"></i></a>
-                  </td>
+                  @if($role == "Admin")
+                    @if($isDeleted == 0)
+                      <td>
+                        <form action="/Admin/users/{{$user -> id}}" method="POST">
+                            @csrf
+                            <input id="isDeleted" type="number" name="isDeleted" value="1" hidden>
+                            <input onclick="return confirm('This action will remove this Admin from the system. Proceed?')"
+                            class="btn btn-danger" type="submit" name="submit" value="Remove Admin">
+                        </form>
+                      </td>
+                    @else
+                      <td></td>
+                    @endif
+                  @else
+                      <td class="icons">
+                        <a style="color:blue;" href="/Admin/users/{{$user -> id}}"><i class="fas fa-eye"></i></a>
+                      </td>
+                  @endif
                 @endif
                   
                   

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,7 +20,7 @@
       <input type="checkbox" id="show-menu">
       <label for="show-menu" class="menu-icon"><i class="fas fa-bars"></i></label> 
       <div class="content">
-      <div class="logo"><a href="#">ME<span style="color: #E30613;">RS</span></a></div>
+      <div class="logo"><a href="/Admin/dashboard">ME<span style="color: #E30613;">RS</span></a></div>
         <ul class="links">
           <li><a href="/Admin/dashboard">Dashboard</a></li>
 
@@ -33,6 +32,7 @@
               <li><a href="/Admin/users/customers">Customers</a></li>
               <li><a href="/Admin/users/equipmentowners">Equipment Owners</a></li>
               <li><a href="/Admin/users/removed">Removed Users</a></li>
+              <li><a href="/Admin">Admin Accounts</a></li>
             </ul>
           </li>
 
@@ -102,7 +102,10 @@
           </li>
 
           <li><a href="/Admin/reports">Reports</a></li>
-          <li><a href="#">Logout</a></li>
+          <form action="{{ route('logout') }}" method="POST">
+            @csrf
+            <li style="font-family:bebas neue"><input type="submit" class="btn btn-light" value="Logout"></li>
+          </form>
         </ul>
       </div>
 	<!--       <label for="show-search" class="search-icon"><i class="fas fa-search"></i></label>

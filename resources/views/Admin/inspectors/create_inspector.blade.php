@@ -80,7 +80,7 @@
           </div>
 
           <div class="button">
-            <input style="font-family:bebas neue; font-size: 20pt; letter-spacing: 0.2em;" type="submit" name="userupdate" value="Update">
+            <input style="font-family:bebas neue; font-size: 20pt; letter-spacing: 0.2em;" type="submit" name="userupdate" value="Add Inspector">
           </div>
         </form>
 
@@ -91,7 +91,7 @@
 
 
   @endsection
-  <!-- Script for displaying image once selected in the form -->
+<!-- Script for displaying image once selected in the form -->
 <script type="text/javascript">
   function readURL(input) {
             if (input.files && input.files[0]) {

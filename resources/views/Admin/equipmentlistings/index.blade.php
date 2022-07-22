@@ -55,7 +55,7 @@
                       <td style="color:red; font-weight: bold;">Rejected</td>
                 @endif
                 
-                <td>{{$equipment -> createdAt}}</td>
+                <td>{{$equipment -> created_at}}</td>
                 <td class="icons">
                   <a style="color:blue;" href="/Admin/equipmentlistings/{{$equipment -> equipmentID}}"><i class="fas fa-eye"></i></a>
                 </td>

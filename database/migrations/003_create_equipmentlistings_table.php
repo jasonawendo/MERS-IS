@@ -24,8 +24,8 @@ return new class extends Migration
 		    $table->string('address',20);
             $table->enum('status',['accepted','pending','rejected'])->default('pending');
             $table->boolean('equipmentAvailability')->default('1');
-            $table->double('equipmentValue');
-            $table->enum('equipmentCondition',['Bad','Moderate','Good']);
+            $table->double('equipmentValue')->nullable();
+            $table->enum('equipmentCondition',['Bad','Moderate','Good'])->nullable();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->nullable()->useCurrentOnUpdate();
             $table->boolean('isDeleted')->default('0');

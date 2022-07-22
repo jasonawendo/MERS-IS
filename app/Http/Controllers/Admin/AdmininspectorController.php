@@ -1,14 +1,12 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Users;
 use App\Models\Inspectionjobs;
 use App\Models\Inspectiontasks;
-
-
 
 class AdmininspectorController extends Controller
 {
@@ -26,9 +24,7 @@ class AdmininspectorController extends Controller
 
     public function remove($userID)
     {
-        $user = Users::findOrFail($userID); //Find the record in the db of this id
-        $user->isDeleted = request('isDeleted');
-        $user->save();
+        $this->removeUser($userID);
         return redirect('/Admin/inspectors/inspectors')->with('msg','Quality Inspector has been removed succesfully');
 
         // error_log(request('isDeleted'));
@@ -38,7 +34,15 @@ class AdmininspectorController extends Controller
     {
         $job = Inspectionjobs::where('isDeleted', '0')->get();
         return view('Admin/inspectors.index_jobs', ['jobs' => $job]);
+    }
 
+    public function showInspectorJobs($userID)
+    {
+        $job = Inspectionjobs::
+        where('isDeleted', '0')
+        ->where('inspectorID' , $userID) //Gets jobs where the ID is for a specific quality inspector
+        ->get();
+        return view('Admin/inspectors.index_jobs', ['jobs' => $job]);
     }
 
     public function indexUnassignedTasks()
@@ -145,21 +149,33 @@ class AdmininspectorController extends Controller
     {
         $IJID = request('job');
 
-       // Change Updated at date-time for this Inspection Job
-        $time = date('Y-m-d H:i:s');
-        $job = Inspectionjobs::findOrFail($IJID);
-        $job->updated_at = $time;
-        $job->save();
-
-       // Assign the Inspection Job to the selected Inspection tasks
+        // Assign the Inspection Job to the selected Inspection tasks
         $array = request('task');
-        $length = count($array);
-        for ($i=0; $i < $length; $i++) 
-        { 
-            $task = Inspectiontasks::findOrFail( $array[$i] );
-            $task->IJID = $IJID;
-            $task->save();
+        if (!isset($array)) 
+        {
+            return redirect('/Admin/inspectors/jobs')->with('msg','No tasks were selected');
+            die;
         }
+
+        else
+        {
+            $length = count($array);
+            for ($i=0; $i < $length; $i++) 
+            { 
+                $task = Inspectiontasks::findOrFail( $array[$i] );
+                $task->IJID = $IJID;
+                $task->save();
+            }
+
+        // Change Updated at date-time for this Inspection Job
+            $time = date('Y-m-d H:i:s');
+            $job = Inspectionjobs::findOrFail($IJID);
+            $job->updated_at = $time;
+            $job->save();
+        }
+        
+
+       
 
         return redirect('/Admin/inspectors/jobs')->with('msg','Tasks assigned successfully');
     }

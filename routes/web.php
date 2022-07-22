@@ -85,12 +85,17 @@ Route::get('Admin/users/equipmentowners', [AdminuserController::class, 'indexOwn
 Route::get('Admin/users/removed', [AdminuserController::class, 'indexRemoved']);
 //Show
 Route::get('Admin/users/{userID}', [AdminuserController::class, 'show']);
+Route::get('Admin/users/{role}/{userID}', [AdminuserController::class, 'showRating']);
 //Remove User
 //'Delete'
 Route::post('Admin/users/{userID}', [AdminuserController::class, 'remove']);
 //Accept or reject registration request
 Route::post('Admin/users/accepted/{userID}', [AdminuserController::class, 'accept']);
 Route::post('Admin/users/rejected/{userID}', [AdminuserController::class, 'reject']);
+
+Route::get('Admin', [AdminuserController::class, 'indexAdmin']);
+Route::get('Admin/create', [AdminuserController::class, 'createAdmin']);
+Route::post('Admin/create', [AdminuserController::class, 'storeAdmin']);
 
 //5. Quality Inspector
 use App\Http\Controllers\Admin\AdmininspectorController; //Added
@@ -102,6 +107,7 @@ Route::get('Admin/inspectors/untasks', [AdmininspectorController::class, 'indexU
 Route::post('Admin/inspectors/remove/{userID}', [AdmininspectorController::class, 'remove']);
 //Show
 Route::get('Admin/inspectors/jobs/{IJID}', [AdmininspectorController::class, 'show']);
+Route::get('Admin/inspectors/jobfor/{userID}', [AdmininspectorController::class, 'showInspectorJobs']);
 //Create 
 Route::get('Admin/inspectors/create', [AdmininspectorController::class, 'createInspector']);
 Route::post('Admin/inspectors/create', [AdmininspectorController::class, 'storeInspector']);
@@ -137,3 +143,24 @@ Route::get('Admin/ratingsreviews/owners/{userID}', [AdminrrController::class, 's
 //1. Dashboard
 use App\Http\Controllers\Inspector\Inspectordashboard; //Added
 Route::get('Inspector/dashboard', [Inspectordashboard::class, 'index']);
+//2. Inspection Jobs
+use App\Http\Controllers\Inspector\InspectorjobController;
+Route::get('Inspectors/jobs/past', [InspectorjobController::class, 'indexPastJobs']);
+Route::get('Inspectors/jobs/pending', [InspectorjobController::class, 'indexPendingJobs']);
+Route::get('Inspectors/jobs/assigned', [InspectorjobController::class, 'indexAssignedJobs']);
+//Show
+Route::get('Inspectors/jobs/{IJID}', [InspectorjobController::class, 'show']);
+Route::get('Inspectors/equipment/{IJID}/{ITID}/{equipmentID}', [InspectorjobController::class, 'add']);
+Route::post('Inspectors/equipment/{equipmentID}', [InspectorjobController::class, 'store']);
+Route::get('Inspectors/rental/redirect/{IJID}/{ITID}/{rentalID}', [InspectorjobController::class, 'showRentalEquipment']);
+Route::get('Inspectors/rental/{IJID}/{ITID}/{equipmentID}', [InspectorjobController::class, 'showEquipment']);
+Route::get('Inspectors/rental/{equipmentID}/{ownerID}', [InspectorjobController::class, 'showUser']);
+
+Route::post('Inspectors/rental/accepted/{IJID}/{ITID}/{rentalID}', [InspectorjobController::class, 'acceptRental']);
+Route::post('Inspectors/rental/rejected/{IJID}/{ITID}/{rentalID}', [InspectorjobController::class, 'rejectRental']);
+
+//3. Profile
+use App\Http\Controllers\Inspector\Inspectorprofile; //Added
+Route::get('Inspector/profile/{userID}', [Inspectorprofile::class, 'show']);
+Route::get('Inspector/profile/edit/{userID}', [Inspectorprofile::class, 'edit']);
+Route::post('Inspector/profile/edit', [Inspectorprofile::class, 'store']);

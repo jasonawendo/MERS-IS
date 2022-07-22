@@ -40,6 +40,8 @@
               <td>{{$inspector -> krapin}}</td>
               <td>{{$inspector -> address}}</td>
               <td class="icons">
+                <a href="/Admin/inspectors/jobfor/{{$inspector -> id}}"><button class="btn btn-info">View Inspector's jobs</button></a>
+                <br>
                 <form action="/Admin/inspectors/remove/{{$inspector -> id}}"" method="POST">
                         @csrf
                         <input id="isDeleted" type="number" name="isDeleted" value="1" hidden>

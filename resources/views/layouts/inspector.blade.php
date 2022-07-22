@@ -1,4 +1,8 @@
-
+@php
+  $user = auth()->user();
+  $inspectorID = $user->id; //Gets Inspector ID of signed in inspector
+  $inspectorname = $user->fname;
+@endphp
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,24 +25,27 @@
       <input type="checkbox" id="show-menu">
       <label for="show-menu" class="menu-icon"><i class="fas fa-bars"></i></label> 
       <div class="content">
-      <div class="logo"><a href="#">ME<span style="color: #E30613;">RS</span></a></div>
+      <div class="logo"><a href="/Inspector/dashboard">ME<span style="color: #E30613;">RS</span></a></div>
         <ul class="links">
-            <li><a href="/Admin/dashboard">Dashboard</a></li>
+            <li><a href="/Inspector/dashboard">Dashboard</a></li>
             
             <li>
                 <input type="checkbox" id="show-inspector">
-                <label for="show-inspector">Quality Inspectors</label>
+                <label for="show-inspector">Inspection Jobs</label>
                 <ul>
-                        <li><a href="/Admin/inspectors/create">Add New Inspector</a></li>
-                        <li><a href="/Admin/inspectors/inspectors">View Quality Inspectors</a></li>
-                <li><a href="/Admin/inspectors/jobs">Inspection Jobs & Tasks</a></li><!-- View Inspection tasks table will be found in each job --> 
-                <!-- Once an inspection task is complete, Inspector will accept or reject Inspection task(needs a new field) and in the backend the rental request inspection status will be accepted or rejected at the same time -->
-                <li><a href="/Admin/inspectors/untasks">View Unassigned Tasks</a></li>
+                  <li><a href="/Inspectors/jobs/past">Past</a></li>
+                  <li><a href="/Inspectors/jobs/pending">Pending</a></li>
+                  <li><a href="/Inspectors/jobs/assigned">Assigned</a></li>
                 </ul>
             </li>
 
-            <li><a href="/Admin/reports">Profile</a></li>
-            <li><a href="#">Logout</a></li>
+            <li><a href="/Inspector/profile/{{$inspectorID}}">Profile</a></li>
+            <form action="{{ route('logout') }}" method="POST">
+              @csrf
+              <li><input style="font-size:17pt; font-family:bebas neue" type="submit" class="btn btn-light" value="Logout"></li>
+            </form>
+            
+            <!-- <li><a href="">Logout</a></li> -->
         </ul>
       </div>
 	<!--       <label for="show-search" class="search-icon"><i class="fas fa-search"></i></label>
@@ -46,7 +53,10 @@
         <input type="text" placeholder="Type Something to Search..." required>
         <button type="submit" class="go-icon"><i class="fas fa-long-arrow-alt-right"></i></button>
       </form> -->
+      
       <label class="search-icon"><a style="color: #E30613;" href="#"><i class="fas fa-comment"></i></a></label>
+      <img class="tbl_img" src="/img/{{$user -> profilepic}}">
+      
     </nav>
   </div>
 </header>
@@ -74,9 +84,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <!-- CHART JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js" integrity="sha512-sW/w8s4RWTdFFSduOTGtk4isV1+190E/GghVffMA9XczdJ2MDzSzLEubKAs5h0wzgSJOQTRYyaz73L3d6RtJSg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-
-
 
 <script type="text/javascript">
 

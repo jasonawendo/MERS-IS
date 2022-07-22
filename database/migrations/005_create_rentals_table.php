@@ -33,6 +33,7 @@ return new class extends Migration
 		$table->enum('inspectionStatus',['accepted','pending','rejected'])->default('pending');
 		$table->enum('ownerStatus',['accepted','pending','rejected'])->default('pending');
         $table->timestamp('created_at')->useCurrent();
+        $$table->timestamp('updated_at')->nullable()->useCurrentOnUpdate();
         $table->boolean('isDeleted')->default('0');
         });
     }
