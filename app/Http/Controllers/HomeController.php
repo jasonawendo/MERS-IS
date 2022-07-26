@@ -13,26 +13,38 @@ class HomeController extends Controller
     public function redirect()
     {
         //Getting the user type during login from the user's credentials entered.
-        $usertype=Auth::user()->role;
+        //$usertype=Auth::user()->role;
 
-        if($usertype == 'admin')
+        $user = auth()->user();
+        $usertype = $user->role;
+
+        if($usertype == 'Admin')
         {
-            return view('admin');
+            return redirect('/Admin/dashboard');
+            //return view('Admin.dashboard');
         }
 
-        else if($usertype == 'equipmentowner')
+        else if($usertype == 'Quality Inspector')
         {
-            return view('equipmentowner');
+            return redirect('/Inspector/dashboard');
+            //return view('inspector.dashboard');
         }
 
-        else if($usertype == 'qualityinspector')
+        /*else if($usertype == 'Equipment Owner')
         {
-            return view('qualityinspector');
+            return redirect('/Owner/dashboard');
+            #return view('');
+        }*/
+
+        else if($usertype == 'Customer')
+        {
+            return redirect('/Customer/dashboard');
+            //return view('inspector.dashboard');
         }
 
         else
         {
-            return view('dashboard');
+            return view('OLDdashboard');
         }
     }
 }

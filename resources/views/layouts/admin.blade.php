@@ -102,6 +102,7 @@
           </li>
 
           <li><a href="/Admin/reports">Reports</a></li>
+          
           <form action="{{ route('logout') }}" method="POST">
             @csrf
             <li style="font-family:bebas neue"><input type="submit" class="btn btn-light" value="Logout"></li>
@@ -113,7 +114,7 @@
         <input type="text" placeholder="Type Something to Search..." required>
         <button type="submit" class="go-icon"><i class="fas fa-long-arrow-alt-right"></i></button>
       </form> -->
-      <label class="search-icon"><a style="color: #E30613;" href="#"><i class="fas fa-comment"></i></a></label>
+      <label class="search-icon"><a style="color: #E30613;" href="/chatify"><i class="fas fa-comment"></i></a></label>
     </nav>
   </div>
 </header>

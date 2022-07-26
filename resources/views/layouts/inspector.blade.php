@@ -54,8 +54,9 @@
         <button type="submit" class="go-icon"><i class="fas fa-long-arrow-alt-right"></i></button>
       </form> -->
       
-      <label class="search-icon"><a style="color: #E30613;" href="#"><i class="fas fa-comment"></i></a></label>
+      <label class="search-icon"><a style="color: #E30613;" href="/chatify"><i class="fas fa-comment"></i></a></label>
       <img class="tbl_img" src="/img/{{$user -> profilepic}}">
+      
       
     </nav>
   </div>
