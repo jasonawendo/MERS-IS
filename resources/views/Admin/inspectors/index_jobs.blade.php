@@ -12,7 +12,7 @@
       <div class="col-md-12">
         <center>
           <h2 class="page-title">View Inspection Jobs</h2>
-          <a style="color:blue;" href="/Admin/inspectors/createjob"><button class="btn btn-warning"><i class="fas fa-plus"></i>     Create Inspection Job</button></a>
+          <a href="/Admin/inspectors/createjob"><button class="btn btn-warning"><i class="fas fa-plus"></i>     Create Inspection Job</button></a>
           <br>
           <h5  style="color:lightgreen;"> {{ session('msg') }} </h5>
         </center>
@@ -37,7 +37,7 @@
             @endphp
             <tr>
               <td class="icons">
-                <a style="color:blue;" href="/Admin/inspectors/jobs/{{$job -> IJID}}"><i class="fas fa-eye"></i></a>
+                <a class="btn btn-info" style="color:white;" href="/Admin/inspectors/jobs/{{$job -> IJID}}"><i class="fas fa-eye"></i></a>
               </td>
               <td>{{$job -> IJID}}</td>
               <td>{{$job -> inspectorID}}</td>

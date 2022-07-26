@@ -109,7 +109,7 @@
                     <td>{{$user -> websitelink}}</td>
                   </tr>
                   <tr>
-                      <th width="30%">Created At</th>
+                      <th width="30%">Account Created At</th>
                       <td width="2%">:</td>
                       <td>{{$user -> created_at}}</td>
                     </tr>

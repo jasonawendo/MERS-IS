@@ -37,7 +37,7 @@ class AdminrentalController extends Controller
 
     public function indexStart()
     {
-        $dt = Carbon::now();
+        $dt = Carbon::now()->setTimezone('Africa/Nairobi');
         $date = $dt->toDateString(); //Gets the current date
 
         $rental = Rentals::
@@ -50,7 +50,7 @@ class AdminrentalController extends Controller
 
     public function indexOngoing()
     {
-        $dt = Carbon::now();
+        $dt = Carbon::now()->setTimezone('Africa/Nairobi');
         $date = $dt->toDateString(); //Gets the current date
 
         $rental = Rentals::
@@ -64,7 +64,7 @@ class AdminrentalController extends Controller
 
     public function indexPast()
     {
-        $dt = Carbon::now();
+        $dt = Carbon::now()->setTimezone('Africa/Nairobi');
         $date = $dt->toDateString(); //Gets the current date
 
         $rental = Rentals::

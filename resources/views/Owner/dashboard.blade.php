@@ -1,4 +1,4 @@
-@extends('layouts.admin') 
+@extends('layouts.owner') 
 <!-- Blade directive used to call a specific template/layout file -->
 
 @section('content') 
@@ -6,8 +6,8 @@
     referred to when determining which content to place where -->
 @php
   $user = auth()->user();
-  $adminID = $user->id; //Gets Inspector ID of signed in inspector
-  $adminName = $user->fname;
+  $ownerID = $user->id; //Gets Owner ID of signed in inspector
+  $ownerName = $user->fname;
 @endphp
 
 <style type="text/css">
@@ -30,127 +30,101 @@
   }
 
 </style>
-  <br>
+
+<br>
+  
 <section>
 	<div class="row">
 		<center>
-			<h2 class="page-title">Welcome {{$adminName}}</h2>
+			<h2 class="page-title">Welcome {{$ownerName}}</h2>
             <h2 style="color:#fff; font-size:25pt; font-family:bebas neue">Dashboard</h2>
 		</center>
 
-		<div class="col-sm-6 col-xl-3 mb-4">
+		<div class="col-sm-6 col-xl-4 mb-4">
 			<div class="card">
 				<div class="rounded d-flex align-items-center justify-content-between p-4">
         	<div class="icons">
-        		<i  class="fa fa-tty fa-3x"></i>
+        		<i  class="fa fa-star fa-3x"></i>
         	</div>
           	<div class="ms-3">
-              <p style="font-size:15pt; font-family:bebas neue;" >Registration requests</p>
-              <h6>{{$requests}}</h6> <br>
+              <p style="font-size:15pt; font-family:bebas neue;" >Pending Rates and Reviews</p>
+              <h6>1</h6> <br>
               <a href="/Admin/users/requests" class="btn btn-light">Full Detail &nbsp; <i class="fa fa-arrow-right"></i></a>
           	</div>
         </div>
 			</div> 
     </div>
 
-    <div class="col-sm-6 col-xl-3 mb-4">
-			<div class="card">
-				<div class="rounded d-flex align-items-center justify-content-between p-4">
-        	<div class="icons">
-        		<i  class="fa fa-users fa-3x"></i>
-        	</div>
-          <div class="ms-3">
-              <p style="font-size:15pt; font-family:bebas neue;" >Registered Users</p>
-              <h6>{{$users}}</h6> <br>
-          </div>
-        </div>
-			</div> 
-    </div>
-    
-    <div class="col-sm-6 col-xl-3 mb-4">
+    <div class="col-sm-6 col-xl-4 mb-4">
 			<div class="card">
 				<div class="rounded d-flex align-items-center justify-content-between p-4">
         	<div class="icons">
         		<i  class="fa fa-list fa-3x"></i>
         	</div>
           <div class="ms-3">
-              <p style="font-size:15pt; font-family:bebas neue;" >Equipment Listings</p>
-              <h6>{{$equipment}}</h6> <br>
+              <p style="font-size:15pt; font-family:bebas neue;" >Current Equipment listings</p>
+              <h6>1</h6> <br>
+			  <a href="/Admin/users/requests" class="btn btn-light">Full Detail &nbsp; <i class="fa fa-arrow-right"></i></a>
+          </div>
+        </div>
+			</div> 
+    </div>
+    
+    <div class="col-sm-6 col-xl-4 mb-4">
+			<div class="card">
+				<div class="rounded d-flex align-items-center justify-content-between p-4">
+        	<div class="icons">
+        		<i  class="fa fa-list fa-3x"></i>
+        	</div>
+          <div class="ms-3">
+              <p style="font-size:15pt; font-family:bebas neue;" >Equipment Listing requests</p>
+              <h6>8</h6> <br>
               <a href="/Admin/equipmentlistings" class="btn btn-light">Full Detail &nbsp; <i class="fa fa-arrow-right"></i></a>
           </div>
         </div>
 			</div> 
     </div>
 
-    <div class="col-sm-6 col-xl-3 mb-4">
+    <div class="col-sm-6 col-xl-4 mb-4">
 			<div class="card">
 				<div class="rounded d-flex align-items-center justify-content-between p-4">
         	<div class="icons">
-        		<i  class="fa fa-mobile fa-3x"></i>
+        		<i  class="fa fa-clock fa-3x"></i>
         	</div>
           <div class="ms-3">
-              <p style="font-size:15pt; font-family:bebas neue;" >Orders</p>
-              <h6>{{$orders}}</h6> <br>
+              <p style="font-size:15pt; font-family:bebas neue;" >Pending rental requests</p>
+              <h6>1</h6> <br>
+			  <a href="/Admin/users/requests" class="btn btn-light">Full Detail &nbsp; <i class="fa fa-arrow-right"></i></a>
           </div>
         </div>
 			</div> 
     </div>
 
-    <div class="col-sm-6 col-xl-3 mb-4">
+    <div class="col-sm-6 col-xl-4 mb-4">
 			<div class="card">
 				<div class="rounded d-flex align-items-center justify-content-between p-4">
         	<div class="icons">
-        		<i  class="fa fa-briefcase fa-3x"></i>
+        		<i  class="fa fa-thumbs-down fa-3x"></i>
         	</div>
           <div class="ms-3">
-              <p style="font-size:15pt; font-family:bebas neue;" >Inspection Jobs</p>
-              <h6>{{$jobs}}</h6> <br>
+              <p style="font-size:15pt; font-family:bebas neue;" >Rejected rental requests</p>
+              <h6>2</h6> <br>
               <a href="/Admin/inspectors/jobs" class="btn btn-light">Full Detail &nbsp; <i class="fa fa-arrow-right"></i></a>
           </div>
         </div>
 			</div> 
     </div>
 
-    <div class="col-sm-6 col-xl-3 mb-4">
+    <div class="col-sm-6 col-xl-4 mb-4">
 			<div class="card">
 				<div class="rounded d-flex align-items-center justify-content-between p-4">
         	<div class="icons">
-        		<i  class="fa fa-tty fa-3x"></i>
+        		<i  class="fa fa-thumbs-down fa-3x"></i>
         	</div>
           <div class="ms-3">
-              <p style="font-size:15pt; font-family:bebas neue;" >Equipment listing requests</p>
-              <h6>{{$listingrequest}}</h6> <br>
+              <p style="font-size:15pt; font-family:bebas neue;" >Rejected Equipment listing requests</p>
+              <h6>3</h6> <br>
               <a href="/Admin/equipmentlistings/pending" class="btn btn-light">Full Detail &nbsp; <i class="fa fa-arrow-right"></i></a>
-          </div>
-        </div>
-			</div> 
-    </div>
-
-    <div class="col-sm-6 col-xl-3 mb-4">
-			<div class="card">
-				<div class="rounded d-flex align-items-center justify-content-between p-4">
-        	<div class="icons">
-        		<i  class="fa fa-coins fa-3x"></i>
-        	</div>
-          <div class="ms-3">
-              <p style="font-size:15pt; font-family:bebas neue;" >Total Revenue</p>
-              <h6>${{$revenue}}</h6> <br>
-              <a href="/Admin/orders/paid" class="btn btn-light">Full Detail &nbsp; <i class="fa fa-arrow-right"></i></a>
-          </div>
-        </div>
-			</div> 
-    </div>
-
-    <div class="col-sm-6 col-xl-3 mb-4">
-			<div class="card">
-				<div class="rounded d-flex align-items-center justify-content-between p-4">
-        	<div class="icons">
-        		<i  class="fa fa-tty fa-3x"></i>
-        	</div>
-          <div class="ms-3">
-              <p style="font-size:15pt; font-family:bebas neue;" >Rental requests</p>
-              <h6>{{$rentals}}</h6> <br>
-              <a href="/Admin/rentals/requests" class="btn btn-light">Full Detail &nbsp; <i class="fa fa-arrow-right"></i></a>
           </div>
         </div>
 			</div> 
@@ -174,9 +148,6 @@
     </div>  
 	</div>
 </section>
-
-
-
 
 <!-- DATATABLES -->
 <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.12.1/b-2.2.3/cr-1.5.6/date-1.1.2/fh-3.2.4/r-2.3.0/rg-1.2.0/sc-2.0.7/sb-1.3.4/sp-2.0.2/sl-1.4.0/datatables.min.js"></script>
@@ -212,9 +183,9 @@
 	});
 
 	// Equipment Listing Request Pie chart
-	var accepted = {{$equipment}} ;
-	var pending = {{$listingrequest}};
-	var rejected = {{$rejectedrequest}};
+	var accepted = 33 ;
+	var pending = 33;
+	var rejected = 33;
 	var ctx2 = $("#el-request").get(0).getContext("2d");
 	    var myChart5 = new Chart(ctx2, {
 	        type: "pie",

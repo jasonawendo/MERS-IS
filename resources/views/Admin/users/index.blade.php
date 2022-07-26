@@ -84,7 +84,10 @@
                 
                 @if($status == "pending")
                   <td class="icons">
-                    <a style="color:blue;" href="/Admin/users/{{$user -> id}}"><i class="fas fa-eye"></i></a>
+
+                    <a class="btn btn-info" style="color:white;" href="/Admin/users/{{$user -> id}}"><i class="fas fa-eye"></i></a>
+
+                    
                     <form action="/Admin/users/accepted/{{$user -> id}}"" method="POST">
                         @csrf
                         <input id="accepted" type="text" name="status" value="accepted" hidden>
@@ -116,7 +119,7 @@
                     @endif
                   @else
                       <td class="icons">
-                        <a style="color:blue;" href="/Admin/users/{{$user -> id}}"><i class="fas fa-eye"></i></a>
+                        <a class="btn btn-info" style="color:white;" href="/Admin/users/{{$user -> id}}"><i class="fas fa-eye"></i></a>
                       </td>
                   @endif
                 @endif

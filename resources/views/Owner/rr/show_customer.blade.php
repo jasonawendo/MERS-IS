@@ -1,4 +1,4 @@
-@extends('layouts.admin') 
+@extends('layouts.owner') 
 <!-- Blade directive used to call a specific template/layout file -->
 
 @section('content') 
@@ -36,7 +36,7 @@
 		<!-- Back btn -->
         <a href="javascript:history.back()"><button class="btn btn-light"><i  class="fa fa-backward"></i> BACK</button></a> 
         <div class="row">
-          <center><h2 class="page-title">Equipment Owner's ratings</h2></center>
+          <center><h2 class="page-title">{{$user -> fname}}'s ratings</h2></center>
           <div class="col-lg-6 mx-auto">
             <div class="card shadow-sm">
               <div class="card-header bg-transparent text-center">
@@ -55,15 +55,10 @@
                 <p class="mb-0"><strong class="pr-1">User ID:</strong> {{$user -> id}}</p>
                 <p class="mb-0"><strong class="pr-1">Average Rating:</strong> {{$user -> averageRating}} / 10</p>
                 <p class="mb-0"><strong class="pr-1">Email Address:</strong> {{$user -> email}}</p>
-                <a href="#"><button class="btn btn-warning">Contact User</button></a>
-
-				<form action="/Admin/users/{{$user -> id}}" method="POST">
-					@csrf
-					<input id="isDeleted" type="number" name="isDeleted" value="1" hidden>
-					<input onclick="return confirm('This action will remove this User from the system. Proceed?')"
-					class="btn btn-danger" type="submit" name="submit" value="Remove User">
-				</form>
-
+				<p class="mb-0"><strong class="pr-1">Mobile Number:</strong> {{$user -> mobilenumber}}</p>
+				<p class="mb-0"><strong class="pr-1">Linked In Profile link:</strong> {{$user -> linkedin}}</p>
+				<p class="mb-0"><strong class="pr-1">Website Link:</strong> {{$user -> websitelink}}</p>
+                <!-- <a href="/Admin/users/{{$user -> id}}"><button class="btn btn-dark">View User Profile</button></a> -->
               </div>
             </div>
           </div>
@@ -114,11 +109,11 @@
 						</div>
 						<p class="mb-0"><strong class="pr-1">Rating:</strong> {{$rating}} / 10</p>
 						<div class="d-flex v-card align-items-center">
-						<img src="/img/{{$rr -> profilepic}} " alt="Image" class="img-fluid mr-3">
+							<img src="/img/{{$rr -> profilepic}} " alt="Image" class="img-fluid mr-3">
 							<div class="author-name">
-							<span class="d-block"><strong class="pr-1">User #{{$rr -> ownerID}} - {{$rr -> fname}} {{$rr -> lname}}</strong></span>
-							<span class="d-block"> Concerning Rental: <strong class="pr-1">#{{$rr -> rentalID}} - {{$rr -> equipmentName}}</strong></span>
-							</div>
+							<span class="d-block"><strong class="pr-1">{{$rr -> fname}} {{$rr -> lname}}</strong></span>
+							<span class="d-block">Equipment Owner</span>
+						</div>
 						</div>
 						</div>
 					</div>

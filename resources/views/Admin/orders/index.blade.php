@@ -44,7 +44,7 @@
 							<td>{{$order -> created_at}}</td>
 							<td>{{$order -> updated_at}}</td>
 							<td class="icons">
-							<a style="color:blue;" href="/Admin/orders/{{$order -> orderID}}"><i class="fas fa-eye"></i></a>
+								<a class="btn btn-info" style="color:white;" href="/Admin/orders/{{$order -> orderID}}"><i class="fas fa-eye"></i></a>
 							</td>
 						</tr>
 					@endforeach

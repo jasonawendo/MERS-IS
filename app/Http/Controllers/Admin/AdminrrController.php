@@ -46,8 +46,13 @@ class AdminrrController extends Controller
     {
         $user = Users::findOrFail($userID); //Find the record in the db of this id
         $rr = Rrcustomers::
-        where('isDeleted', '0')
-        ->where('customerID', $userID)
+        where('rrcustomers.isDeleted', '0')
+        ->where('rrcustomers.customerID', $userID)
+        ->join('users', 'rrcustomers.ownerID', "=", 'users.id')
+        //Join Rentals and Inspection tasks table to know which tasks are for which rentals
+        ->join('rentals', 'rrcustomers.rentalID', "=", 'rentals.rentalID')
+        //Join Rentals and Equipment table to know which equipment and their owners are for which rentals
+        ->join('equipmentlistings', 'equipmentlistings.equipmentID', "=", 'rentals.equipmentID')
         ->get();
         return view('Admin/rr.show_customer', ['user' => $user], ['rrs' => $rr], ['title' => 'View Customer Ratings and Reviews']);
     }

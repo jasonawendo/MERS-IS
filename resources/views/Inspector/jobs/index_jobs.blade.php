@@ -47,7 +47,7 @@
                 @endif
               </td>
               <td class="icons">
-                <a style="color:blue;" href="/Inspectors/jobs/{{$job -> IJID}}"><i class="fas fa-eye"></i></a>
+                <a class="btn btn-info" style="color:white;" href="/Inspectors/jobs/{{$job -> IJID}}"><i class="fas fa-eye"></i></a>
               </td>
               
             </tr>

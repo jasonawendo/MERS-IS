@@ -17,7 +17,7 @@ class InspectorjobController extends Controller
         $user = auth()->user();
         $inspectorID = $user->id; //Gets Inspector ID of signed in inspector
 
-        $dt = Carbon::now();
+        $dt = Carbon::now()->setTimezone('Africa/Nairobi');
         $date = $dt->toDateTimeString(); //Gets the current date
 
         $job = Inspectionjobs::
@@ -34,7 +34,7 @@ class InspectorjobController extends Controller
         $user = auth()->user();
         $inspectorID = $user->id; //Gets Inspector ID of signed in inspector
 
-        $dt = Carbon::now();
+        $dt = Carbon::now()->setTimezone('Africa/Nairobi');
         $date = $dt->toDateTimeString(); //Gets the current date
 
         $job = Inspectionjobs::
@@ -51,7 +51,7 @@ class InspectorjobController extends Controller
         $user = auth()->user();
         $inspectorID = $user->id; //Gets Inspector ID of signed in inspector
 
-        $dt = Carbon::now();
+        $dt = Carbon::now()->setTimezone('Africa/Nairobi');
         $date = $dt->toDateTimeString(); //Gets the current date
 
         $job = Inspectionjobs::

@@ -30,7 +30,7 @@ class Inspectorprofile extends Controller
 
         if(isset($img))
         {
-            $newImageName = time(). '-' . request('fname') . request('lname') . '.' . request('profile')->extension(); //renames the image based on time uploaded, firstname, lastname of user and extension of the image
+            $newImageName = time(). '-' . request('fname') . request('lname') . '.' . request('profile')->extension(); //renames the image
             request('profile')->move(public_path('img'), $newImageName); //Moves uploaded file image into the public image folder
             $inspector->profilepic = $newImageName;
         }

@@ -45,7 +45,6 @@
             <div class="input-box">
               <span class="details">Password</span>
               <input type="password" name="password" required> 
-              <!-- You may need to check this again -->
             </div>
 
             <div class="input-box">
