@@ -20,26 +20,28 @@
                   <th>Customer Rating ID</th>
                   <th>Customer ID</th><!-- Sending -->
                   <th>Owner ID</th>  <!-- Receiving -->
+                  <th>Details</th>
                   <th>Rental ID</th> <!-- Must be a past rental -->
                   <th>Rating</th> <!-- Both Star form and specific value -->
                   <th>Review Description</th>
                   <th>Created At</th>
-                  <th>Action</th>
+                  
                 </tr>
             </thead>
             <tbody>
               @foreach($rrs as $rr)
                 <tr>
                   <td>{{$rr -> ORID}}</td>
-                  <td>{{$rr -> customerID}}</td>
+                  <td>{{$rr -> customerID}} - {{$rr -> fname}} {{$rr -> lname}}</td>
                   <td>{{$rr -> ownerID}}</td>
+                  <td class="icons">
+                    <a style="color:blue;" href="/Admin/ratingsreviews/owners/{{$rr -> ownerID}}"><button class="btn btn-warning">View Owner ratings</button>
+                  </td>
                   <td>{{$rr -> rentalID}}</td>
                   <td>{{$rr -> rating}} / 10</td>
                   <td>{{$rr -> review}}</td>
                   <td>{{$rr -> created_at}}</td>
-                  <td class="icons">
-                  <a style="color:blue;" href="/Admin/ratingsreviews/owners/{{$rr -> ownerID}}"><button class="btn btn-warning">View Owner ratings</button>
-                  </td>
+                  
                 </tr>
               @endforeach
             </tbody>

@@ -21,7 +21,7 @@
             <tr>
               <th></th>
 	            <th>Inspection Job ID</th>
-              <th>Inspector ID</th>
+              <th>Inspector ID - Name</th>
               <th>Inspection Date & Time</th> <!-- Must be before the starting date -->
               <th>Address (County)</th>
               <th>Created At</th>
@@ -40,7 +40,7 @@
                 <a class="btn btn-info" style="color:white;" href="/Admin/inspectors/jobs/{{$job -> IJID}}"><i class="fas fa-eye"></i></a>
               </td>
               <td>{{$job -> IJID}}</td>
-              <td>{{$job -> inspectorID}}</td>
+              <td>{{$job -> inspectorID}} - {{$job -> fname}} {{$job -> lname}}</td>
               <td>{{$job -> dateTimeInspection}}</td>
               <td>{{$job -> address}}</td>
               <td>{{$job -> created_at}}</td>

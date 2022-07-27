@@ -32,7 +32,10 @@ class AdmininspectorController extends Controller
 
     public function indexJobs()
     {
-        $job = Inspectionjobs::where('isDeleted', '0')->get();
+        $job = Inspectionjobs::
+        where('Inspectionjobs.isDeleted', '0')
+        ->join('users', 'Inspectionjobs.inspectorID', "=", 'users.id')
+        ->get();
         return view('Admin/inspectors.index_jobs', ['jobs' => $job]);
     }
 

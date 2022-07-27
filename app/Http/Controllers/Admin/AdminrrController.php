@@ -11,7 +11,8 @@ class AdminrrController extends Controller
     public function indexCustomers()
     {
         $rr = Rrcustomers::
-        where('isDeleted', '0')
+        where('rrcustomers.isDeleted', '0')
+        ->join('users', 'rrcustomers.ownerID', "=", 'users.id')
         ->get();
         return view('Admin/rr.index_customer', ['rrs' => $rr]);
     }
@@ -19,7 +20,8 @@ class AdminrrController extends Controller
     public function indexOwners()
     {
         $rr = Rrowners::
-        where('isDeleted', '0')
+        where('rrowners.isDeleted', '0')
+        ->join('users', 'rrowners.customerID', "=", 'users.id')
         ->get();
         return view('Admin/rr.index_owner', ['rrs' => $rr]);
     }

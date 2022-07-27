@@ -95,11 +95,15 @@ class OwnerrentalController extends Controller
         $rental = Rentals::
         where('rentals.inspectionStatus', 'accepted')
         ->where('rentals.OwnerStatus', 'accepted')
+        ->whereNotNull('rentals.orderID')
         ->where('rentals.isDeleted', '0')
         ->whereDate('rentals.dateTimeStart', '>' , $datetime)
-        ->join('users', 'rentals.customerID', "=", 'users.id')
-        ->join('equipmentlistings', 'equipmentlistings.equipmentID', "=", 'rentals.equipmentID')
+        ->join('orders', 'rentals.orderID', "=", 'orders.orderID')
+        ->where('orders.paymentStatus', 1)
+        ->join('users', 'rentals.customerID', "=", 'users.id')//Join rentals and users table to know the customer detailsof the person using the rental
+        ->join('equipmentlistings', 'equipmentlistings.equipmentID', "=", 'rentals.equipmentID')//Join equipment and rentals table to know the equipment details of the equipment being rented
         ->where('equipmentlistings.ownerID', $ownerID)//The equipment being checked must belong to the specific logged in Owner
+        
         ->get();
 
         return view('Owner/rentals.index', ['rentals' => $rental], ['title' => 'View Starting rentals']);
@@ -116,15 +120,18 @@ class OwnerrentalController extends Controller
         $rental = Rentals::
         where('rentals.inspectionStatus', 'accepted')
         ->where('rentals.OwnerStatus', 'accepted')
+        ->whereNotNull('rentals.orderID')
         ->where('rentals.isDeleted', '0')
         ->whereDate('rentals.dateTimeStart', '<=' , $datetime)
         ->whereDate('rentals.dateTimeEnd', '>' , $datetime)
+        ->join('orders', 'rentals.orderID', "=", 'orders.orderID')
+        ->where('orders.paymentStatus', 1)
         ->join('users', 'rentals.customerID', "=", 'users.id')
         ->join('equipmentlistings', 'equipmentlistings.equipmentID', "=", 'rentals.equipmentID')
         ->where('equipmentlistings.ownerID', $ownerID)//The equipment being checked must belong to the specific logged in Owner
         ->get();
 
-        return view('Owner/rentals.index', ['rentals' => $rental], ['title' => 'View Starting rentals']);
+        return view('Owner/rentals.index', ['rentals' => $rental], ['title' => 'View Ongoing rentals']);
     }
 
     public function indexRentalPast()
@@ -138,14 +145,17 @@ class OwnerrentalController extends Controller
         $rental = Rentals::
         where('rentals.inspectionStatus', 'accepted')
         ->where('rentals.OwnerStatus', 'accepted')
+        ->whereNotNull('rentals.orderID')
         ->where('rentals.isDeleted', '0')
         ->whereDate('rentals.dateTimeStart', '<' , $datetime)
         ->whereDate('rentals.dateTimeEnd', '<=' , $datetime)
+        ->join('orders', 'rentals.orderID', "=", 'orders.orderID')
+        ->where('orders.paymentStatus', 1)
         ->join('users', 'rentals.customerID', "=", 'users.id')
         ->join('equipmentlistings', 'equipmentlistings.equipmentID', "=", 'rentals.equipmentID')
         ->where('equipmentlistings.ownerID', $ownerID)//The equipment being checked must belong to the specific logged in Owner
         ->get();
 
-        return view('Owner/rentals.index', ['rentals' => $rental], ['title' => 'View Starting rentals']);
+        return view('Owner/rentals.index', ['rentals' => $rental], ['title' => 'View Past rentals']);
     }
 }
