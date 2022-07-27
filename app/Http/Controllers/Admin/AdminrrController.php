@@ -11,7 +11,8 @@ class AdminrrController extends Controller
     public function indexCustomers()
     {
         $rr = Rrcustomers::
-        where('isDeleted', '0')
+        where('rrcustomers.isDeleted', '0')
+        ->join('users', 'rrcustomers.ownerID', "=", 'users.id')
         ->get();
         return view('Admin/rr.index_customer', ['rrs' => $rr]);
     }
@@ -19,7 +20,8 @@ class AdminrrController extends Controller
     public function indexOwners()
     {
         $rr = Rrowners::
-        where('isDeleted', '0')
+        where('rrowners.isDeleted', '0')
+        ->join('users', 'rrowners.customerID', "=", 'users.id')
         ->get();
         return view('Admin/rr.index_owner', ['rrs' => $rr]);
     }
@@ -46,8 +48,14 @@ class AdminrrController extends Controller
     {
         $user = Users::findOrFail($userID); //Find the record in the db of this id
         $rr = Rrcustomers::
-        where('isDeleted', '0')
-        ->where('customerID', $userID)
+        where('rrcustomers.isDeleted', '0')
+        ->where('rrcustomers.customerID', $userID)
+        //Join Users and RRcustomers table to know which ratings and reviews are for which users
+        ->join('users', 'rrcustomers.ownerID', "=", 'users.id')
+        //Join Rentals and Inspection tasks table to know which tasks are for which rentals
+        ->join('rentals', 'rrcustomers.rentalID', "=", 'rentals.rentalID')
+        //Join Rentals and Equipment table to know which equipment and their owners are for which rentals
+        ->join('equipmentlistings', 'equipmentlistings.equipmentID', "=", 'rentals.equipmentID')
         ->get();
         return view('Admin/rr.show_customer', ['user' => $user], ['rrs' => $rr], ['title' => 'View Customer Ratings and Reviews']);
     }

@@ -30,7 +30,7 @@
   }
 
 </style>
-  
+  <br>
 <section>
 	<div class="row">
 		<center>

@@ -33,6 +33,8 @@
   <section>       
     <div class="profile py-4">
       <div class="container">
+		<!-- Back btn -->
+        <a href="javascript:history.back()"><button class="btn btn-light"><i  class="fa fa-backward"></i> BACK</button></a> 
         <div class="row">
           <center><h2 class="page-title">Customer's ratings</h2></center>
           <div class="col-lg-6 mx-auto">
@@ -102,12 +104,12 @@
 								<i class="far fa-star"></i> 
 							@endfor
 						</div>
-						<p class="mb-0"><strong class="pr-1">Rating:</strong> 5 / 10</p>
+						<p class="mb-0"><strong class="pr-1">Rating:</strong> {{$rating}} / 10</p>
 						<div class="d-flex v-card align-items-center">
-							<!-- <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80" alt="Image" class="img-fluid mr-3"> -->
+						<img src="/img/{{$rr -> profilepic}} " alt="Image" class="img-fluid mr-3">
 							<div class="author-name">
-							<span class="d-block"> From User: <strong class="pr-1">{{$rr -> ownerID}}</strong></span>
-							<span class="d-block"> Concerning Rental: <strong class="pr-1">#{{$rr -> rentalID}}</strong></span>
+							<span class="d-block"><strong class="pr-1">User #{{$rr -> ownerID}} - {{$rr -> fname}} {{$rr -> lname}}</strong></span>
+							<span class="d-block"> Concerning Rental: <strong class="pr-1">#{{$rr -> rentalID}} - {{$rr -> equipmentName}}</strong></span>
 							</div>
 						</div>
 						</div>

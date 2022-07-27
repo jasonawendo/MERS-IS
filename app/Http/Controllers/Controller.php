@@ -14,7 +14,6 @@ use App\Models\Orders;
 use App\Models\Rrcustomers;
 use App\Models\Rrowners;
 use App\Models\Rentals;
-use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 class Controller extends BaseController
 {

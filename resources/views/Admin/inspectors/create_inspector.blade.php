@@ -45,7 +45,6 @@
             <div class="input-box">
               <span class="details">Password</span>
               <input type="password" name="password" required> 
-              <!-- You may need to check this again -->
             </div>
 
             <div class="input-box">
@@ -75,7 +74,7 @@
             </div>
 
             <div class="input-box">
-              <img id="img" class="profile_imgi" src="" alt="profile">
+              <img id="img" class="profile_imgi" src="/img/admin.jpg" alt="profile">
             </div>
           </div>
 

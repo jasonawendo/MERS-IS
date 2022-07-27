@@ -6,11 +6,8 @@
     referred to when determining which content to place where -->
 	@php
 		use Carbon\Carbon; //Displays current date and time
-		$dt = Carbon::now();
+		$dt = Carbon::now()->setTimezone('Africa/Nairobi');
 		$currentdatetime = $dt->toDateTimeString();
-		
-		
-
 
 		$inspectiondatetime = $job -> dateTimeInspection;
 		$completionStatus = $job -> isCompleted;

@@ -1,4 +1,4 @@
-@extends('layouts.admin') 
+@extends('layouts.owner') 
 <!-- Blade directive used to call a specific template/layout file -->
 
 @section('content') 
@@ -11,6 +11,7 @@
         <div class="col-md-12">
           <center>
             <h2 class="page-title">{{ $title }}</h2>
+            <a href="/Owner/listing/create"><button class="btn btn-warning"><i class="fas fa-plus"></i>     Create New Equipment Listing request</button></a>
             <h5  style="color:lightgreen;"> {{ session('msg') }} </h5>
           </center>
           
@@ -19,7 +20,6 @@
               <tr>
                 <th>Equipment ID</th>
                 <th>Equipment Image</th>
-                <th>Owner ID - Name</th>
                 <th>Equipment Name</th>
                 <th>Equipment Description</th>
                 <th>Rent Rate</th>
@@ -35,13 +35,13 @@
             @foreach($equipmentlisting as $equipment)
             @php 
               $status = $equipment -> status;
+              $isDeleted = $equipment -> isDeleted;
             @endphp
               <tr>
                 <td>{{$equipment -> equipmentID}}</td>
                 <td>
                   <img class="tbl_img" src="/img/{{$equipment -> equipmentImage}}">
                 </td>
-                <td>{{$equipment -> ownerID}} - {{$equipment -> fname}}</td>
                 <td>{{$equipment -> equipmentName}}</td>
                 <td>{{$equipment -> equipmentDescription}}</td>
                 <td>${{$equipment -> rentRate}}</td>
@@ -57,8 +57,11 @@
                 
                 <td>{{$equipment -> created_at}}</td>
                 <td class="icons">
-                    <a class="btn btn-info" style="color:white;" href="/Admin/equipmentlistings/{{$equipment -> equipmentID}}"><i class="fas fa-eye"></i></a>
-                  </td>
+                  <button class="btn btn-info" >
+                    <a style="color:white;" href="/Owner/equipmentlistings/{{$equipment -> equipmentID}}"><i class="fas fa-eye"></i></a>
+                  </button>
+                  <br><br>
+                </td>
               </tr>
             @endforeach
             </tbody>

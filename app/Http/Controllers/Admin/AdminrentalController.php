@@ -11,9 +11,11 @@ class AdminrentalController extends Controller
     public function index()
     {
         $rental = Rentals::
-        where('inspectionStatus', 'pending')
-        ->where('OwnerStatus', 'pending')
-        ->where('isDeleted', '0')
+        where('rentals.inspectionStatus', 'pending')
+        ->where('rentals.OwnerStatus', 'pending')
+        ->where('rentals.isDeleted', '0')
+        ->join('users', 'rentals.customerID', "=", 'users.id')
+        ->join('equipmentlistings', 'equipmentlistings.equipmentID', "=", 'rentals.equipmentID')
         ->get();
 
         return view('Admin/rentals.index', ['rentals' => $rental], ['title' => 'View Rental Requests']);
@@ -21,14 +23,15 @@ class AdminrentalController extends Controller
 
     public function indexRejects()
     {
-        
         $rental = Rentals::
-        where('isDeleted', '0')
+        where('rentals.isDeleted', '0')
+        ->join('users', 'rentals.customerID', "=", 'users.id')
+        ->join('equipmentlistings', 'equipmentlistings.equipmentID', "=", 'rentals.equipmentID')
         ->where(function($query) 
                 {
                     $query
-                    ->where('inspectionStatus', 'rejected')
-                    ->orWhere('OwnerStatus', 'rejected');
+                    ->where('rentals.inspectionStatus', 'rejected')
+                    ->orWhere('rentals.OwnerStatus', 'rejected');
                 })
         ->get();
 
@@ -37,12 +40,14 @@ class AdminrentalController extends Controller
 
     public function indexStart()
     {
-        $dt = Carbon::now();
+        $dt = Carbon::now()->setTimezone('Africa/Nairobi');
         $date = $dt->toDateString(); //Gets the current date
 
         $rental = Rentals::
-        where('isDeleted', '0')
-        ->whereDate('dateTimeStart', '>' , $date)
+        where('rentals.isDeleted', '0')
+        ->whereDate('rentals.dateTimeStart', '>' , $date)
+        ->join('users', 'rentals.customerID', "=", 'users.id')
+        ->join('equipmentlistings', 'equipmentlistings.equipmentID', "=", 'rentals.equipmentID')
         ->get();
 
         return view('Admin/rentals.index', ['rentals' => $rental], ['title' => 'View Starting rentals']);
@@ -50,13 +55,15 @@ class AdminrentalController extends Controller
 
     public function indexOngoing()
     {
-        $dt = Carbon::now();
+        $dt = Carbon::now()->setTimezone('Africa/Nairobi');
         $date = $dt->toDateString(); //Gets the current date
 
         $rental = Rentals::
-        where('isDeleted', '0')
-        ->whereDate('dateTimeStart', '<=' , $date)
-        ->whereDate('dateTimeEnd', '>' , $date)
+        where('rentals.isDeleted', '0')
+        ->whereDate('rentals.dateTimeStart', '<=' , $date)
+        ->whereDate('rentals.dateTimeEnd', '>' , $date)
+        ->join('users', 'rentals.customerID', "=", 'users.id')
+        ->join('equipmentlistings', 'equipmentlistings.equipmentID', "=", 'rentals.equipmentID')
         ->get();
 
         return view('Admin/rentals.index', ['rentals' => $rental], ['title' => 'View Ongoing rentals']);
@@ -64,12 +71,14 @@ class AdminrentalController extends Controller
 
     public function indexPast()
     {
-        $dt = Carbon::now();
+        $dt = Carbon::now()->setTimezone('Africa/Nairobi');
         $date = $dt->toDateString(); //Gets the current date
 
         $rental = Rentals::
-        where('isDeleted', '0')
-        ->whereDate('dateTimeEnd', '<=' , $date)
+        where('rentals.isDeleted', '0')
+        ->whereDate('rentals.dateTimeEnd', '<=' , $date)
+        ->join('users', 'rentals.customerID', "=", 'users.id')
+        ->join('equipmentlistings', 'equipmentlistings.equipmentID', "=", 'rentals.equipmentID')
         ->get();
 
         return view('Admin/rentals.index', ['rentals' => $rental], ['title' => 'View Past rentals']);

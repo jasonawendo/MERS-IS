@@ -20,14 +20,6 @@ Route::get('/', function () {
     return view('home');
 });
 
-/*Route::get('/login.blade.php', function () {
-    return view('login.blade.php');
-});
-
-Route::get('/register.blade.php', function () {
-    return view('register.blade.php');
-});*/
-
 // Route::get('/user', function () {
 //     return view('user');
 // });
@@ -35,7 +27,7 @@ Route::get('/register.blade.php', function () {
 //     return view('cart');
 // });
 
-//---------------------------------------AUTHENTICATION--------------------------------------------
+//-----------------------------------------------------AUTHENTICATION----------------------------------------------------------
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -48,7 +40,7 @@ Route::middleware([
 #Route for user role based login
 Route::get('/redirect', [HomeController::class,'redirect']);
 
-//----------------------------------------CUSTOMER-------------------------------------------------
+//-----------------------------------------------CUSTOMER---------------------------------------------------------------------
 
 //Index Equipment
 use App\Http\Controllers\Customer\EquipmentlistingController; //Added
@@ -56,7 +48,7 @@ Route::get('Customer/equipmentlistings', [EquipmentlistingController::class, 'in
 //Show Equipment
 Route::get('Customer/equipmentlistings/{equipmentID}', [EquipmentlistingController::class, 'show']);// Displays Single equipment listing based on ID
 
-//------------------------------------------ADMIN---------------------------------------------------
+//---------------------------------------------------ADMIN---------------------------------------------------------------------
 //1. Dashboard
 use App\Http\Controllers\Admin\Admindashboard; //Added
 Route::get('Admin/dashboard', [Admindashboard::class, 'index']);
@@ -74,8 +66,7 @@ Route::get('Admin/equipmentlistings/rejected', [AdminlistingController::class, '
 //Show
 Route::get('Admin/equipmentlistings/{equipmentID}', [AdminlistingController::class, 'show']);// Displays Single equipment listing based on ID
 //'Delete'
-Route::post('Admin/equipmentlistings/{equipmentID}', [AdminlistingController::class, 'destroy']);// Displays Single equipment listing based on ID
-
+Route::post('Admin/equipmentlistings/{equipmentID}', [AdminlistingController::class, 'destroy']);
 //4. User
 use App\Http\Controllers\Admin\AdminuserController; //Added
 //Index
@@ -138,7 +129,7 @@ Route::get('Admin/ratingsreviews/lowrated', [AdminrrController::class, 'indexUse
 Route::get('Admin/ratingsreviews/customers/{userID}', [AdminrrController::class, 'showCustomers']);
 Route::get('Admin/ratingsreviews/owners/{userID}', [AdminrrController::class, 'showOwners']);
 
-//------------------------------------------INSPECTOR---------------------------------------------------
+//----------------------------------------------------INSPECTOR----------------------------------------------------------------
 
 //1. Dashboard
 use App\Http\Controllers\Inspector\Inspectordashboard; //Added
@@ -164,3 +155,67 @@ use App\Http\Controllers\Inspector\Inspectorprofile; //Added
 Route::get('Inspector/profile/{userID}', [Inspectorprofile::class, 'show']);
 Route::get('Inspector/profile/edit/{userID}', [Inspectorprofile::class, 'edit']);
 Route::post('Inspector/profile/edit', [Inspectorprofile::class, 'store']);
+
+//-------------------------------------------------EQUIPMENT OWNER----------------------------------------------------------
+//1. Dashboard
+use App\Http\Controllers\Owner\Ownerdashboard; //Added
+Route::get('Owner/dashboard', [Ownerdashboard::class, 'index']);
+
+//2. Equipment Listings
+use App\Http\Controllers\Owner\OwnerlistingController; //Added
+//Index
+Route::get('Owner/equipmentlistings', [OwnerlistingController::class, 'indexAccepted']);// Displays all accepted equipment listings
+Route::get('Owner/equipmentlistings/pending', [OwnerlistingController::class, 'indexPending']);// Displays all equipment listings requests
+Route::get('Owner/equipmentlistings/rejected', [OwnerlistingController::class, 'indexRejected']);
+Route::get('Owner/equipmentlistings/removed', [OwnerlistingController::class, 'indexRemoved']);
+//Show
+Route::get('Owner/equipmentlistings/{equipmentID}', [OwnerlistingController::class, 'show']);// Displays Single equipment listing based on ID
+//Create 
+Route::get('Owner/listing/create', [OwnerlistingController::class, 'create']);
+Route::post('Owner/listing/create', [OwnerlistingController::class, 'store']);
+//Delete Equipment
+Route::post('Owner/equipmentlistings/{equipmentID}', [OwnerlistingController::class, 'destroy']);
+//Update
+Route::get('Owner/equipmentlistings/edit/{equipmentID}', [OwnerlistingController::class, 'edit']);
+Route::post('Owner/equipmentlistings/edit/{equipmentID}', [OwnerlistingController::class, 'updateListing']);
+Route::get('Owner/equipmentlistings/edit/{equipmentID}/{availableStatus}', [OwnerlistingController::class, 'changeAvailability']);
+
+//3. Inspections
+use App\Http\Controllers\Owner\OwnerinspectionController; //Added
+//Index
+Route::get('Owner/inspections/tasks/listingrequests/upcoming', [OwnerinspectionController::class, 'indexUpcomingListingRequestTasks']);
+Route::get('Owner/inspections/tasks/rentalrequests/upcoming', [OwnerinspectionController::class, 'indexUpcomingRentalRequestTasks']);
+Route::get('Owner/inspections/tasks/listingrequests/completed', [OwnerinspectionController::class, 'indexCompletedListingRequestTasks']);
+Route::get('Owner/inspections/tasks/rentalrequests/completed', [OwnerinspectionController::class, 'indexCompletedRentalRequestTasks']);
+//Show
+Route::get('Owner/inspectiontasks/{inspectorID}', [OwnerinspectionController::class, 'showInspector']);
+
+//4. Rentals
+use App\Http\Controllers\Owner\OwnerrentalController; //Added
+//Index
+Route::get('Owner/rentals/requests/pending', [OwnerrentalController::class, 'indexReqPending']);
+Route::get('Owner/rentals/starting', [OwnerrentalController::class, 'indexRentalStart']);
+Route::get('Owner/rentals/ongoing', [OwnerrentalController::class, 'indexRentalOngoing']);
+Route::get('Owner/rentals/past', [OwnerrentalController::class, 'indexRentalPast']);
+Route::get('Owner/rentals/requests/rejected', [OwnerrentalController::class, 'indexReqRejected']);
+//Accept
+Route::get('Owner/rental/{rentalID}/{status}/{equipmentID}', [OwnerrentalController::class, 'rentalResponse']);
+
+
+//5. Ratings and Reviews
+use App\Http\Controllers\Owner\OwnerrrController; //Added
+//Index
+Route::get('Owner/customers/ratingsreviews', [OwnerrrController::class, 'indexRRCustomers']);
+Route::get('Owner/customers/ratingsreviews/pending', [OwnerrrController::class, 'indexRRPendingCustomers']);
+Route::get('Owner/my/ratingsreviews', [OwnerrrController::class, 'indexMyRR']);
+//Show
+Route::get('Owner/customers/ratingsreviews/{userID}', [OwnerrrController::class, 'showCustomers']);
+//Create - Give Rating and Reviews
+Route::get('Owner/customers/ratingsreviews/create/{userID}/{rentalID}', [OwnerrrController::class, 'createRR']);
+Route::post('Owner/customers/ratingsreviews/create', [OwnerrrController::class, 'saveRR']);
+
+//6. Profile
+use App\Http\Controllers\Owner\Ownerprofile; //Added
+Route::get('Owner/profile/{userID}', [Ownerprofile::class, 'show']);
+Route::get('Owner/profile/edit/{userID}', [Ownerprofile::class, 'edit']);
+Route::post('Owner/profile/edit', [Ownerprofile::class, 'store']);
