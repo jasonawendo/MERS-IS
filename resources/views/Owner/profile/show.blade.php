@@ -6,6 +6,7 @@
     referred to when determining which content to place where -->
 
     @php
+      $profile = $user->profilepic;
       $rating = $user -> averageRating;
       $stars = 0;
       if ($rating == 1 || $rating == 2)
@@ -41,7 +42,11 @@
           <div class="col-lg-4">
             <div class="card shadow-sm">
               <div class="card-header bg-transparent text-center">
-                <img class="profile_img" src="/img/{{$user -> profilepic}}" alt="dp">
+              @if(!isset($profile))
+                <img class="profile_img" src="/img/admin.jpg" alt="dp">
+              @else
+                <img class="profile_img" src="/img/{{$profile}}" alt="dp">
+              @endif
                 <div class="reviews">
                   @for ($i=0; $i < $stars; $i++) 
                     <i class="fas fa-star"></i> 

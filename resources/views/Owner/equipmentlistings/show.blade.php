@@ -8,6 +8,8 @@
     @php 
       $status = $equipment -> status;
       $isDeleted = $equipment -> isDeleted;
+      $equipmentAvailability = $equipment -> equipmentAvailability;
+      $rentalAvailability = $equipment -> rentalAvailability;
     @endphp
 
 <style type="text/css">
@@ -72,7 +74,11 @@
                         <tr>
                           <th width="30%">Availability</th>
                           <td width="2%">:</td>
-                          <td>{{$equipment -> equipmentAvailability}}</td>
+                          @if(($equipmentAvailability == 1) && ($rentalAvailability == 1))
+                            <td>Yes</td>
+                          @else
+                            <td>No</td>
+                          @endif
                         </tr>      
                   @else
                         <tr></tr>
@@ -94,6 +100,15 @@
                       <th width="30%">Action</th>
                       <td width="2%">:</td>
                       <td>
+                      <a href="/Owner/equipmentlistings/edit/{{$equipment -> equipmentID}}" class="btn btn-warning">Edit Equipment listing</a>
+                      @if(($equipmentAvailability == 1) && ($rentalAvailability == 1))
+                      <a href="/Owner/equipmentlistings/edit/{{$equipment -> equipmentID}}/0" class="btn btn-dark">Make Unavailable</a>
+                      @elseif(($equipmentAvailability == 0) && ($rentalAvailability == 1))
+                      <a href="/Owner/equipmentlistings/edit/{{$equipment -> equipmentID}}/1" class="btn btn-info">Make Available</a>
+                      @elseif(($equipmentAvailability == 1) && ($rentalAvailability == 0))
+                      <a href="javascript:void(0)" title="While equipment is being rented, it cannot be made unavailable" disabled class="btn btn-secondary">Make Unavailable</a>
+                      @endif
+                      <br><br>
                         <form action="/Owner/equipmentlistings/{{$equipment -> equipmentID}}" method="POST">
                               @csrf
                               <input id="isDeleted" type="number" name="isDeleted" value="1" hidden>
@@ -101,7 +116,9 @@
                               class="btn btn-danger" type="submit" name="submit" value="Remove">
                         </form>
                         <br>
-                        <a href="/Owner/equipmentlistings/edit/{{$equipment -> equipmentID}}"><button class="btn btn-warning">Edit Equipment listing</button></a>
+                        
+                        
+                        
                       </td> 
                       
                     </tr>   
@@ -110,7 +127,7 @@
                           <th width="30%">Action</th>
                           <td width="2%">:</td>
                           <td>
-                            <a href="/Owner/equipmentlistings/edit/{{$equipment -> equipmentID}}"><button class="btn btn-warning">Edit Equipment listing</button></a>
+                            <a href="/Owner/equipmentlistings/edit/{{$equipment -> equipmentID}}" class="btn btn-warning">Edit Equipment listing</a>
                           </td>
                         </tr>
                   @else

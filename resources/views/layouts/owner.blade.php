@@ -60,11 +60,11 @@
             <input type="checkbox" id="show-rentals">
             <label for="show-rentals">Rentals</label>
             <ul>
-              <li><a href="/Admin/rentals/requests">All Rental Requests</a></li>
-              <li><a href="/Admin/rentals/rejectrequests">Pending rental requests</a></li>
-              <li><a href="/Admin/rentals/ongoing">Ongoing rentals</a></li>
-              <li><a href="/Admin/rentals/past">Past rentals</a></li> 
-              <li><a href="/Admin/rentals/past">Rejected rental requests</a></li> 
+              <li><a href="/Owner/rentals/requests/pending">Pending rental requests</a></li>
+              <li><a href="/Owner/rentals/starting">Starting rentals</a></li>
+              <li><a href="/Owner/rentals/ongoing">Ongoing rentals</a></li>
+              <li><a href="/Owner/rentals/past">Past rentals</a></li> 
+              <li><a href="/Owner/rentals/requests/rejected">Rejected rental requests</a></li> 
             </ul>
           </li>
 
@@ -77,7 +77,6 @@
               <li><a href="/Owner/my/ratingsreviews">My Rates and Reviews</a></li>
             </ul>
           </li>
-          <li><a href="/Owner/profile/{{$ownerID}}">Profile</a></li>
           <form action="{{ route('logout') }}" method="POST">
             @csrf
             <li style="font-family:bebas neue"><input type="submit" class="btn btn-light" value="Logout"></li>
@@ -91,9 +90,9 @@
       </form> -->
       <label class="search-icon"><a style="color: #E30613;" href="#"><i class="fas fa-comment"></i></a></label>
       @if(!isset($profile))
-      <img class="tbl_img" src="/img/admin.jpg">
+      <a title="View profile" href="/Owner/profile/{{$ownerID}}"><img class="tbl_img" src="/img/admin.jpg"></a>
       @else
-      <img class="tbl_img" src="/img/{{$profile}}">
+      <a title="View profile" href="/Owner/profile/{{$ownerID}}"><img class="tbl_img" src="/img/{{$profile}}"></a>
       @endif
     </nav>
   </div>

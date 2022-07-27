@@ -19,8 +19,14 @@ class OwnerrrController extends Controller
         $ownerID = $user->id; //Gets Owner ID of signed in Owner
 
         $rr = Rrcustomers::
-        where('isDeleted', '0')
-        ->where('ownerID', $ownerID)
+        where('rrcustomers.isDeleted', '0')
+        ->where('rrcustomers.ownerID', $ownerID)
+        //Join Rentals and Inspection tasks table to know which tasks are for which rentals
+        ->join('rentals', 'rrcustomers.rentalID', "=", 'rentals.rentalID')
+        //Join Rentals and Equipment table to know which equipment and their owners are for which rentals
+        ->join('equipmentlistings', 'equipmentlistings.equipmentID', "=", 'rentals.equipmentID')
+        //Joing Rentals and users table to know the customer being referred to in the rentals table
+        ->join('users', 'rentals.customerID', "=", 'users.id')
         ->get();
         return view('Owner/rr.index_customer', ['rrs' => $rr]);
     }
@@ -46,6 +52,24 @@ class OwnerrrController extends Controller
         ->get();
 
         return view('Owner/rr.index_pendingrr', ['rentals' => $rental]);
+    }
+
+    public function indexMyRR()
+    {
+        $user = auth()->user();
+        $ownerID = $user->id; //Gets Owner ID of signed in Owner
+
+        $rr = Rrowners::
+        where('rrowners.isDeleted', '0')
+        ->where('rrowners.ownerID', $ownerID)
+        //Join Rentals and Inspection tasks table to know which tasks are for which rentals
+        ->join('rentals', 'rrowners.rentalID', "=", 'rentals.rentalID')
+        //Join Rentals and Equipment table to know which equipment and their owners are for which rentals
+        ->join('equipmentlistings', 'equipmentlistings.equipmentID', "=", 'rentals.equipmentID')
+        //Joing Rentals and users table to know the customer being referred to in the rentals table
+        ->join('users', 'rentals.customerID', "=", 'users.id')
+        ->get();
+        return view('Owner/rr.index_ownerrr', ['rrs' => $rr]);
     }
 
     public function showCustomers($userID)

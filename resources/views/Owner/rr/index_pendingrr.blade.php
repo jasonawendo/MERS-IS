@@ -18,8 +18,8 @@
           	<thead class="table-head">
 	            <tr>
 	            	<th>Rental ID</th>
-					<th>Equipment ID - name</th>
-					<th>Customer ID - name</th>
+					<th>Equipment</th>
+					<th>Customer</th>
 					<th>Start Date|Time</th> <!-- Must be at least a week before the Current date/time -->
 					<!-- Should not be able to book if another customer has already booked the slot -->
 					<th>End Date|Time</th>
@@ -34,8 +34,8 @@
 						@endphp
 						<tr>
 							<td>{{$rental -> rentalID}}</td>
-							<td>{{$rental -> equipmentID}} - {{$rental -> equipmentName}}</td>
-							<td>{{$rental -> customerID}} - {{$rental -> fname}} {{$rental -> lname}}</td>
+							<td>{{$rental -> equipmentName}}</td>
+							<td>{{$rental -> fname}} {{$rental -> lname}}</td>
 							<td>{{$rental -> dateTimeStart}}</td>
 							<td>{{$rental -> dateTimeEnd}}</td>
 							<td>

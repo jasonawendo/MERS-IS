@@ -11,7 +11,7 @@
         <div class="col-md-12">
           <center>
             <h2 class="page-title">{{ $title }}</h2>
-            <a href="/Owner/listing/create"><button class="btn btn-warning"><i class="fas fa-plus"></i>     Create New Equipment Listing reqeust</button></a>
+            <a href="/Owner/listing/create"><button class="btn btn-warning"><i class="fas fa-plus"></i>     Create New Equipment Listing request</button></a>
             <h5  style="color:lightgreen;"> {{ session('msg') }} </h5>
           </center>
           
@@ -20,7 +20,6 @@
               <tr>
                 <th>Equipment ID</th>
                 <th>Equipment Image</th>
-                <th>Owner ID</th>
                 <th>Equipment Name</th>
                 <th>Equipment Description</th>
                 <th>Rent Rate</th>
@@ -43,7 +42,6 @@
                 <td>
                   <img class="tbl_img" src="/img/{{$equipment -> equipmentImage}}">
                 </td>
-                <td>{{$equipment -> ownerID}}</td>
                 <td>{{$equipment -> equipmentName}}</td>
                 <td>{{$equipment -> equipmentDescription}}</td>
                 <td>${{$equipment -> rentRate}}</td>
@@ -62,16 +60,7 @@
                   <button class="btn btn-info" >
                     <a style="color:white;" href="/Owner/equipmentlistings/{{$equipment -> equipmentID}}"><i class="fas fa-eye"></i></a>
                   </button>
-                  <br>
-                  @if(($status == "accepted") && ($isDeleted == 0))
-                  <form action="/Owner/equipmentlistings/{{$equipment -> equipmentID}}"" method="POST">
-                        @csrf
-                        <input id="isDeleted" type="number" name="isDeleted" value="1" hidden>
-                        <input onclick="return confirm('This action will remove this Equipment Listing from the system. Proceed?')"
-                        class="btn btn-danger" type="submit" name="submit" value="Remove">
-                  </form>
-                  @else
-                  @endif
+                  <br><br>
                 </td>
               </tr>
             @endforeach

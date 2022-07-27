@@ -60,7 +60,7 @@ class OwnerinspectionController extends Controller
         ->join('equipmentlistings', 'equipmentlistings.equipmentID', "=", 'rentals.equipmentID')
         
         ->where('equipmentlistings.ownerID', $ownerID)//The equipment being checked must belong to the specific logged in Owner
-
+        
          //Join Inspection tasks and Inspection jobs table to know the Inspection job each task belongs to.
         ->join('inspectionjobs', 'inspectiontasks.IJID', "=", 'inspectionjobs.IJID')
         ->where(function($query) 

@@ -39,7 +39,6 @@
                 </ul>
             </li>
 
-            <li><a href="/Inspector/profile/{{$inspectorID}}">Profile</a></li>
             <form action="{{ route('logout') }}" method="POST">
               @csrf
               <li><input style="font-size:17pt; font-family:bebas neue" type="submit" class="btn btn-light" value="Logout"></li>
@@ -55,7 +54,7 @@
       </form> -->
       
       <label class="search-icon"><a style="color: #E30613;" href="#"><i class="fas fa-comment"></i></a></label>
-      <img class="tbl_img" src="/img/{{$user -> profilepic}}">
+      <a title="View profile" href="/Inspector/profile/{{$inspectorID}}"><img class="tbl_img" src="/img/{{$user -> profilepic}}"></a>
       
     </nav>
   </div>

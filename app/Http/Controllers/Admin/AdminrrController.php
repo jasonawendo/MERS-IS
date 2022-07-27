@@ -48,6 +48,7 @@ class AdminrrController extends Controller
         $rr = Rrcustomers::
         where('rrcustomers.isDeleted', '0')
         ->where('rrcustomers.customerID', $userID)
+        //Join Users and RRcustomers table to know which ratings and reviews are for which users
         ->join('users', 'rrcustomers.ownerID', "=", 'users.id')
         //Join Rentals and Inspection tasks table to know which tasks are for which rentals
         ->join('rentals', 'rrcustomers.rentalID', "=", 'rentals.rentalID')

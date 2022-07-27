@@ -48,8 +48,8 @@
         	</div>
           	<div class="ms-3">
               <p style="font-size:15pt; font-family:bebas neue;" >Pending Rates and Reviews</p>
-              <h6>1</h6> <br>
-              <a href="/Admin/users/requests" class="btn btn-light">Full Detail &nbsp; <i class="fa fa-arrow-right"></i></a>
+              <h6>{{$pendingRR}}</h6> <br>
+              <a href="/Owner/customers/ratingsreviews/pending" class="btn btn-light">Full Detail &nbsp; <i class="fa fa-arrow-right"></i></a>
           	</div>
         </div>
 			</div> 
@@ -63,8 +63,8 @@
         	</div>
           <div class="ms-3">
               <p style="font-size:15pt; font-family:bebas neue;" >Current Equipment listings</p>
-              <h6>1</h6> <br>
-			  <a href="/Admin/users/requests" class="btn btn-light">Full Detail &nbsp; <i class="fa fa-arrow-right"></i></a>
+              <h6>{{$listings}}</h6> <br>
+			  <a href="/Owner/equipmentlistings" class="btn btn-light">Full Detail &nbsp; <i class="fa fa-arrow-right"></i></a>
           </div>
         </div>
 			</div> 
@@ -78,8 +78,8 @@
         	</div>
           <div class="ms-3">
               <p style="font-size:15pt; font-family:bebas neue;" >Equipment Listing requests</p>
-              <h6>8</h6> <br>
-              <a href="/Admin/equipmentlistings" class="btn btn-light">Full Detail &nbsp; <i class="fa fa-arrow-right"></i></a>
+              <h6>{{$listingrequests}}</h6> <br>
+              <a href="/Owner/equipmentlistings/pending" class="btn btn-light">Full Detail &nbsp; <i class="fa fa-arrow-right"></i></a>
           </div>
         </div>
 			</div> 
@@ -93,8 +93,8 @@
         	</div>
           <div class="ms-3">
               <p style="font-size:15pt; font-family:bebas neue;" >Pending rental requests</p>
-              <h6>1</h6> <br>
-			  <a href="/Admin/users/requests" class="btn btn-light">Full Detail &nbsp; <i class="fa fa-arrow-right"></i></a>
+              <h6>{{$pendingRequests}}</h6> <br>
+			  <a href="/Owner/rentals/requests/pending" class="btn btn-light">Full Detail &nbsp; <i class="fa fa-arrow-right"></i></a>
           </div>
         </div>
 			</div> 
@@ -108,8 +108,8 @@
         	</div>
           <div class="ms-3">
               <p style="font-size:15pt; font-family:bebas neue;" >Rejected rental requests</p>
-              <h6>2</h6> <br>
-              <a href="/Admin/inspectors/jobs" class="btn btn-light">Full Detail &nbsp; <i class="fa fa-arrow-right"></i></a>
+              <h6>{{$rejectedRentalRequests}}</h6> <br>
+              <a href="/Owner/rentals/requests/rejected" class="btn btn-light">Full Detail &nbsp; <i class="fa fa-arrow-right"></i></a>
           </div>
         </div>
 			</div> 
@@ -123,29 +123,14 @@
         	</div>
           <div class="ms-3">
               <p style="font-size:15pt; font-family:bebas neue;" >Rejected Equipment listing requests</p>
-              <h6>3</h6> <br>
-              <a href="/Admin/equipmentlistings/pending" class="btn btn-light">Full Detail &nbsp; <i class="fa fa-arrow-right"></i></a>
+              <h6>{{$rejectedlistings}}</h6> <br>
+              <a href="/Owner/equipmentlistings/rejected" class="btn btn-light">Full Detail &nbsp; <i class="fa fa-arrow-right"></i></a>
           </div>
         </div>
 			</div> 
     </div>
 	</div>
-
-	<center><h2 style="color:#fff; font-size:25pt; font-family:bebas neue">General reports</h2></center>
-	<div class="row">
-		<div class="col-sm-12 col-xl-8 mb-4">
-	    <div class="bg-dark rounded h-100 p-4">
-				<h6 class="mb-4">No. of users per month</h6>
-				<canvas id="user-growth"></canvas>
-			</div>
-		</div>
-
-		<div class="col-sm-12 col-xl-4 mb-4">
-        <div class="bg-dark rounded h-100 p-4">
-            <h6 class="mb-4">Equipment Listing Requests</h6>
-            <canvas id="el-request"></canvas>
-        </div>
-    </div>  
+ 
 	</div>
 </section>
 
@@ -155,55 +140,5 @@
 <script src="https://kit.fontawesome.com/4a33c5baa2.js" crossorigin="anonymous"></script> 
 <!-- CHART JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js" integrity="sha512-sW/w8s4RWTdFFSduOTGtk4isV1+190E/GghVffMA9XczdJ2MDzSzLEubKAs5h0wzgSJOQTRYyaz73L3d6RtJSg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script type="text/javascript">
-
-	// Salse & Revenue Chart
-	var ctx5 = $("#user-growth").get(0).getContext("2d");
-	var myChart2 = new Chart(ctx5, {
-	    type: "line",
-	    data: {
-	        labels: ["January", "February", "March", "April", "June", "July", "August"],
-	        datasets: [{
-	                label: "Equipment Owners",
-	                data: [15, 30, 55, 45, 70, 65, 85],
-	                backgroundColor: "#E30613",
-	                fill: true
-	            },
-	            {
-	                label: "Customers",
-	                data: [99, 135, 170, 130, 190, 180, 270],
-	                backgroundColor: "#06E5D6",
-	                fill: true
-	            }
-	        ]
-	        },
-	    options: {
-	        responsive: true
-	    }
-	});
-
-	// Equipment Listing Request Pie chart
-	var accepted = 33 ;
-	var pending = 33;
-	var rejected = 33;
-	var ctx2 = $("#el-request").get(0).getContext("2d");
-	    var myChart5 = new Chart(ctx2, {
-	        type: "pie",
-	        data: {
-	            labels: ["Accepted", "Pending", "Rejected"],
-	            datasets: [{
-	                backgroundColor: [
-	                	"#15E506",
-	                	"#0615E5",
-	                    "#E30613"
-	                ],
-	                data: [accepted, pending, rejected]
-	            }]
-	        },
-	        options: {
-	            responsive: true
-	        }
-	    });
-</script>
 
 @endsection

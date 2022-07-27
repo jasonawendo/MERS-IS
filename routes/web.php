@@ -27,7 +27,7 @@ Route::get('/', function () {
 //     return view('cart');
 // });
 
-//---------------------------------------AUTHENTICATION--------------------------------------------
+//-----------------------------------------------------AUTHENTICATION----------------------------------------------------------
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -178,6 +178,7 @@ Route::post('Owner/equipmentlistings/{equipmentID}', [OwnerlistingController::cl
 //Update
 Route::get('Owner/equipmentlistings/edit/{equipmentID}', [OwnerlistingController::class, 'edit']);
 Route::post('Owner/equipmentlistings/edit/{equipmentID}', [OwnerlistingController::class, 'updateListing']);
+Route::get('Owner/equipmentlistings/edit/{equipmentID}/{availableStatus}', [OwnerlistingController::class, 'changeAvailability']);
 
 //3. Inspections
 use App\Http\Controllers\Owner\OwnerinspectionController; //Added
@@ -186,11 +187,20 @@ Route::get('Owner/inspections/tasks/listingrequests/upcoming', [OwnerinspectionC
 Route::get('Owner/inspections/tasks/rentalrequests/upcoming', [OwnerinspectionController::class, 'indexUpcomingRentalRequestTasks']);
 Route::get('Owner/inspections/tasks/listingrequests/completed', [OwnerinspectionController::class, 'indexCompletedListingRequestTasks']);
 Route::get('Owner/inspections/tasks/rentalrequests/completed', [OwnerinspectionController::class, 'indexCompletedRentalRequestTasks']);
-
-
-
-
+//Show
 Route::get('Owner/inspectiontasks/{inspectorID}', [OwnerinspectionController::class, 'showInspector']);
+
+//4. Rentals
+use App\Http\Controllers\Owner\OwnerrentalController; //Added
+//Index
+Route::get('Owner/rentals/requests/pending', [OwnerrentalController::class, 'indexReqPending']);
+Route::get('Owner/rentals/starting', [OwnerrentalController::class, 'indexRentalStart']);
+Route::get('Owner/rentals/ongoing', [OwnerrentalController::class, 'indexRentalOngoing']);
+Route::get('Owner/rentals/past', [OwnerrentalController::class, 'indexRentalPast']);
+Route::get('Owner/rentals/requests/rejected', [OwnerrentalController::class, 'indexReqRejected']);
+//Accept
+Route::get('Owner/rental/{rentalID}/{status}/{equipmentID}', [OwnerrentalController::class, 'rentalResponse']);
+
 
 //5. Ratings and Reviews
 use App\Http\Controllers\Owner\OwnerrrController; //Added

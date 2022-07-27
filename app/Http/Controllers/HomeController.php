@@ -27,10 +27,10 @@ class HomeController extends Controller
             return redirect('/Inspector/dashboard');
         }
 
-        /*else if($usertype == 'Equipment Owner')
+        else if($usertype == 'Equipment Owner')
         {
-            return view('');
-        }*/
+            return redirect('/Owner/dashboard');
+        }
 
         else
         {

@@ -74,7 +74,7 @@
             </div>
 
             <div class="input-box">
-              <img id="img" class="profile_imgi" src="" alt="profile">
+              <img id="img" class="profile_imgi" src="/img/admin.jpg" alt="profile">
             </div>
           </div>
 

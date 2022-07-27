@@ -4,6 +4,9 @@
 @section('content') 
 <!-- Blade directive used to call name the body as a section that can be 
     referred to when determining which content to place where -->
+@php
+$profile = $user -> profilepic
+@endphp
 
 <style type="text/css">
   .profile_imgi 
@@ -66,7 +69,11 @@
                 </div>
 
                 <div class="input-box">
-                  <img id="img" class="profile_imgi" src="/img/{{$user -> profilepic}}" alt="profile">
+                  @if(!isset($profile))
+                    <img id="img" class="profile_imgi" src="/img/admin.jpg" alt="profile">
+                  @else
+                    <img id="img" class="profile_imgi" src="/img/{{$user -> profilepic}}" alt="profile">
+                  @endif
                 </div>
                 
               </div>

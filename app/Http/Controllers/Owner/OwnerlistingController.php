@@ -145,4 +145,14 @@ class OwnerlistingController extends Controller
         $equipment->save();
         return redirect("/Owner/equipmentlistings/$equipmentID")->with('msg','Equipment listing information has been updated successfully');
     }
+
+    public function changeAvailability($equipmentID, $availableStatus)
+    {
+        //Changes Equipment availability to either 0 or 1
+        $equipment = Equipmentlisting::findOrFail($equipmentID); //Find the record in the db of this id
+        $equipment->equipmentAvailability = $availableStatus; 
+        $equipment->save();
+
+        return redirect("/Owner/equipmentlistings/$equipmentID")->with('msg','Equipment Availability has been updated successfully');
+    }
 }
