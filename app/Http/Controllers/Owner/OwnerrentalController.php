@@ -5,12 +5,18 @@ namespace App\Http\Controllers\Owner;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Rentals;
+use App\Models\Orders;
 use App\Models\Equipmentlisting;
 use App\Models\Inspectiontasks;
 use Carbon\Carbon;
 
 class OwnerrentalController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function indexReqPending()
     {
         $user = auth()->user();
@@ -39,6 +45,12 @@ class OwnerrentalController extends Controller
         $rental -> OwnerStatus = $status;
         $rental ->save();
 
+        $orderID = $rental -> orderID;
+        $totalPrice = $rental -> totalPrice;
+        
+        $this->editOrderStatusBasedOnRentals($orderID); //Custom functions that changes order to isApproved if all its rentals have been accepted or
+        //rejected by the Equipment owner or Quality Inspector
+
         if($status == "accepted") //Creates a corresponding inspection task once accepted by Owner, else if rejected, doesnt create a task
         {
             $deadline = Carbon::create($rental -> dateTimeStart)->subDays(7); //Deadline of inspecion task should be 7 days before the Startdatetime of rental
@@ -58,6 +70,7 @@ class OwnerrentalController extends Controller
         }
         else
         {
+            $this->deductTotalOnRentalReject($orderID, $totalPrice); //Rental will be subtracted from total order
             return redirect('/Owner/rentals/requests/pending')->with('msg','Rental request has been rejected.'); 
         }
         

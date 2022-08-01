@@ -8,6 +8,11 @@ use App\Models\Users;
 
 class Inspectorprofile extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function show($userID)
     {
         $user = Users::findOrFail($userID); //Find the record in the db of this id

@@ -29,7 +29,6 @@
                 <th>Address (County)</th>
                 <th>User Type</th>
                 <th>Company Name</th>
-                <th>Status</th>
                 <th>Average Rating</th><!-- By default, all new users will start with a rating of 4 -->
                 <th>Created at</th>
                 <th>Action</th>
@@ -38,14 +37,13 @@
             <tbody>
             @foreach($users as $user)
               @php
-                $status = $user -> status;
                 $role = $user -> role;
                 $isDeleted = $user -> isDeleted;
               @endphp
               <tr>
                 <td>{{$user -> id}}</td>
                 
-                  @if($status == "accepted")
+                  
                     @if($role == "Admin")
                     <td>
                       <img class="tbl_img" src="/img/admin.jpg">
@@ -55,9 +53,7 @@
                       <img class="tbl_img" src="/img/{{$user -> profilepic}}">
                     </td>
                     @endif
-                  @else
-                  <td></td>
-                @endif
+
                 <td style="text-transform:capitalize;">{{$user -> role}}</td>
                 <td>{{$user -> fname}} {{$user -> lname}}</td>
                 <td>{{$user -> mobilenumber}}</td>
@@ -66,13 +62,6 @@
                 <td style="text-transform:capitalize;">{{$user -> usertype}}</td>
                 <td>{{$user -> companyname}}</td>
 
-                @if($status == "accepted")
-                      <td style="color:green; font-weight: bold;">Accepted</td>
-                @elseif($status == "pending")
-                      <td style="color:royalblue; font-weight: bold;">Pending</td>
-                @else
-                      <td style="color:red; font-weight: bold;">Rejected</td>
-                @endif
 
                 @if($role == "Admin")
                 <td></td>
@@ -80,30 +69,7 @@
                 <td>{{$user -> averageRating}} / 10</td>
                 @endif
                 <td>{{$user -> created_at}}</td>
-
-                
-                @if($status == "pending")
-                  <td class="icons">
-
-                    <a class="btn btn-info" style="color:white;" href="/Admin/users/{{$user -> id}}"><i class="fas fa-eye"></i></a>
-
-                    
-                    <form action="/Admin/users/accepted/{{$user -> id}}"" method="POST">
-                        @csrf
-                        <input id="accepted" type="text" name="status" value="accepted" hidden>
-                        <input onclick="return confirm('This action will accept this user registration request and add them to the system. Proceed?')"
-                        class="btn btn-success" type="submit" name="submit" value="Accept">
-                    </form>
-                    <br>
-                    <form action="/Admin/users/rejected/{{$user -> id}}"" method="POST">
-                        @csrf
-                        <input id="rejected" type="text" name="status" value="rejected" hidden>
-                        <input onclick="return confirm('This action will reject this user registration request and disallow them from accessing the system. Proceed?')"
-                        class="btn btn-danger" type="submit" name="submit" value="Reject">
-                    </form>
-                    
-                  </td>  
-                @else
+ 
                   @if($role == "Admin")
                     @if($isDeleted == 0)
                       <td>
@@ -122,7 +88,6 @@
                         <a class="btn btn-info" style="color:white;" href="/Admin/users/{{$user -> id}}"><i class="fas fa-eye"></i></a>
                       </td>
                   @endif
-                @endif
                   
                   
                   <!-- <button class="btn btn-info">View Orders</button>
@@ -134,6 +99,10 @@
             </tbody>
         </table>
       </div>
+      <center>
+            <button class="btn btn-primary" onclick='window.print()'>Print</button>
+          </center>
+          <br><br>
   </div>
 </div>
   

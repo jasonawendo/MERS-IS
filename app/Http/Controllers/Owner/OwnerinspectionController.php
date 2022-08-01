@@ -11,6 +11,11 @@ use Carbon\Carbon;
 
 class OwnerinspectionController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function indexUpcomingListingRequestTasks()
     {
         $user = auth()->user();

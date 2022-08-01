@@ -55,7 +55,6 @@
                 <p class="mb-0"><strong class="pr-1">User ID:</strong> {{$user -> id}}</p>
                 <p class="mb-0"><strong class="pr-1">Average Rating:</strong> {{$user -> averageRating}} / 10</p>
                 <p class="mb-0"><strong class="pr-1">Email Address:</strong> {{$user -> email}}</p>
-                <a href="#"><button class="btn btn-warning">Contact User</button></a>
 
 				<form action="/Admin/users/{{$user -> id}}" method="POST">
 					@csrf
@@ -114,10 +113,9 @@
 						</div>
 						<p class="mb-0"><strong class="pr-1">Rating:</strong> {{$rating}} / 10</p>
 						<div class="d-flex v-card align-items-center">
-						<img src="/img/{{$rr -> profilepic}} " alt="Image" class="img-fluid mr-3">
 							<div class="author-name">
-							<span class="d-block"><strong class="pr-1">User #{{$rr -> ownerID}} - {{$rr -> fname}} {{$rr -> lname}}</strong></span>
-							<span class="d-block"> Concerning Rental: <strong class="pr-1">#{{$rr -> rentalID}} - {{$rr -> equipmentName}}</strong></span>
+							<span class="d-block"><strong class="pr-1">User #{{$rr -> ownerID}}  {{$rr -> fname}} {{$rr -> lname}}</strong></span>
+							<span class="d-block"> Concerning Rental: <strong class="pr-1">#{{$rr -> rentalID}}  {{$rr -> equipmentName}}</strong></span>
 							</div>
 						</div>
 						</div>

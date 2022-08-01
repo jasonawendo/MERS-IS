@@ -52,8 +52,6 @@
         <input type="text" placeholder="Type Something to Search..." required>
         <button type="submit" class="go-icon"><i class="fas fa-long-arrow-alt-right"></i></button>
       </form> -->
-      
-      <label class="search-icon"><a style="color: #E30613;" href="#"><i class="fas fa-comment"></i></a></label>
       <a title="View profile" href="/Inspector/profile/{{$inspectorID}}"><img class="tbl_img" src="/img/{{$user -> profilepic}}"></a>
       
     </nav>

@@ -8,6 +8,11 @@ use App\Models\Rrowners;
 use App\Models\Users;
 class AdminrrController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function indexCustomers()
     {
         $rr = Rrcustomers::

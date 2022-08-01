@@ -12,9 +12,9 @@
           <div class="col-md-6">
           <div class="content">
             <h3>Join our creative community</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-            tempor incididunt ut labore et dolore magna aliqua.</p>
-            <a href="#"><button class="btn" style="background-color:#E30613; color:white;">Explore equipment offered</button></a>
+            <p>We have a community of various customers, equipment owners and Quality inspectors that are important
+              in making our website a success. You can start with exploring available, approved equipment.</p>
+            <a href="/equipmentlistings"><button class="btn" style="background-color:#E30613; color:white;">Explore equipment offered</button></a>
           </div>
           </div>
         </div>
@@ -32,8 +32,8 @@
           <div class="col-md-6 content">
             <span>About Us</span>
             <h3>Rent, Rent out Equipment, Make passive income, Rate eachother</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-            tempor incididunt ut labore et dolore magna aliqua.</p>
+            <p>We are a group of hardworking students that created this beautiful and beneficial platform
+              where you can rent equipment of your choice or earning money in doing so, safely and trustingly through a rating system</p>
             <a href="#"><button class="btn" style="background-color:#E30613; color:white;">Register With Us</button></a>
           </div>
           
@@ -49,43 +49,33 @@
         <div class="box">
           <span class="fas fa-camera"></span>
           <h3>Rent Equipment</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-          tempor incididunt ut labore et dolore magna aliqua.</p>
+          <p>You can rent any equipment of your choice which is of moderate to good quality.</p>
         </div>
 
         <div class="box">
           <span class="fas fa-money-bill"></span>
           <h3>Rent out Equipment</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-          tempor incididunt ut labore et dolore magna aliqua.</p>
+          <p>If you register as a login Inspector, this platform supports the process in renting out equipment 
+            and earning a passive income in the process.</p>
         </div>
 
         <div class="box">
           <span class="fas fa-check-double"></span>
           <h3>Quality Inspections</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-          tempor incididunt ut labore et dolore magna aliqua.</p>
+          <p>Each Equipment must be inspected fully and properly before being listed on the site 
+            and before it is provided as a rental.</p>
         </div>
 
         <div class="box">
           <span class="fas fa-user-check"></span>
           <h3>Users Authentication</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-          tempor incididunt ut labore et dolore magna aliqua.</p>
+          <p>Users will be verified through the rating system.</p>
         </div>
 
         <div class="box">
           <span class="fas fa-star"></span>
           <h3>Rate and Review peers</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-          tempor incididunt ut labore et dolore magna aliqua.</p>
-        </div>
-
-        <div class="box">
-          <span class="fas fa-comment-dots"></span>
-          <h3>In-app communication</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-          tempor incididunt ut labore et dolore magna aliqua.</p>
+          <p>Rate and review your peers in order to encourage trust worthiness amongst eachother.</p>
         </div>
 
       </div>
@@ -96,21 +86,21 @@
       <div class="box-container container">
 
         <div class="box">
-          <img class="processimg1" src="img/p1.png" alt="Register">
+          <img class="processimg1" src="/img/p1.png" alt="Register">
           <h3>Register as Customer or Equipment Owner</h3>
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
           tempor incididunt ut labore et dolore magna aliqua.</p>
         </div>
 
         <div class="box">
-          <img class="processimg2" src="img/p2.png" alt="Authentication">
+          <img class="processimg2" src="/img/p2.png" alt="Authentication">
           <h3>Wait for authentication</h3>
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
           tempor incididunt ut labore et dolore magna aliqua.</p>
         </div>
 
         <div class="box">
-          <img class="processimg3" src="img/p3.png" alt="Access account">
+          <img class="processimg3" src="/img/p3.png" alt="Access account">
           <h3>Access account and reap benefits</h3>
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
           tempor incididunt ut labore et dolore magna aliqua.</p>

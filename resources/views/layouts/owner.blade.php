@@ -4,7 +4,7 @@
   {
     route('logout');
   }
-  $ownerID = $user->id; //Gets Inspector ID of signed in inspector
+  $ownerID = $user->id; //Gets signed in user ID
   $ownername = $user->fname;
   $profile = $user->profilepic;
 @endphp
@@ -88,7 +88,6 @@
         <input type="text" placeholder="Type Something to Search..." required>
         <button type="submit" class="go-icon"><i class="fas fa-long-arrow-alt-right"></i></button>
       </form> -->
-      <label class="search-icon"><a style="color: #E30613;" href="#"><i class="fas fa-comment"></i></a></label>
       @if(!isset($profile))
       <a title="View profile" href="/Owner/profile/{{$ownerID}}"><img class="tbl_img" src="/img/admin.jpg"></a>
       @else

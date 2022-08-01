@@ -22,11 +22,6 @@
 		                    <td>{{$order -> customerID}}</td>
 		                  </tr>
 		                  <tr>
-		                    <th width="30%">Payment Method</th>
-		                    <td width="2%">:</td>
-		                    <td>{{$order -> paymentMethod}}</td>
-		                  </tr>
-		                  <tr>
 		                    <th width="30%">Payment Status</th>
 		                    <td width="2%">:</td>
 							@php
@@ -80,7 +75,6 @@
 						<th>Total Price</th>
 						<th>Inspection Status</th>
 						<th>Owner Status</th>
-						<th>Insurance</th>
 						<th>Created at</th>
 						<th>Updated at</th>
 							<!-- 	      					<th>Action</th> -->
@@ -116,8 +110,6 @@
 							@else
 								<td style="color:red; font-weight: bold;">Rejected</td>
 							@endif
-
-							<td>{{$rental -> insurance}}</td>
 							<td>{{$rental -> created_at}}</td>
 							<td>{{$rental -> updated_at}}</td>
 						</tr>

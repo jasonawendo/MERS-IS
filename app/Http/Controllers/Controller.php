@@ -55,6 +55,52 @@ class Controller extends BaseController
         }
     }
 
+    public function editOrderStatusBasedOnRentals($orderID)
+    {
+        $rentalArray = Rentals::
+        where('isDeleted', '0')
+        ->where('orderID', $orderID)
+        ->pluck('rentalID'); //get's the task IDs and stores them in an array
+
+        $length = count($rentalArray);
+        $i=0;
+        while($i < $length)
+        {
+            $rental = Rentals::findOrFail( $rentalArray[$i] );
+            $inspectorStatus = $rental->inspectionStatus;
+            $ownerStatus = $rental->ownerStatus;
+            // $isCompleted = $task->isCompleted;
+            //If all inspection tasks are complete, then Job status becomes complete
+            if( (($inspectorStatus == "accepted") && ($ownerStatus == "accepted")) || ($ownerStatus == "rejected") || ($inspectorStatus == "rejected") )
+            {
+                $isApproved = "yes";
+                $i++;   
+            }
+            else
+            {
+                $isApproved = "no";
+                break;
+            }
+        }
+
+        if($isApproved == "yes") //If Job status is complete then we can make the Inspection job isCompleted to 1, else no change
+        {
+            //Set Inspection job isCompleted to 1
+            $order = Orders::findOrFail($orderID);
+            $order->isApproved = 1;
+            $order->save();
+        }
+    }
+
+    public function deductTotalOnRentalReject($orderID, $totalPrice)
+    {
+        $order = Orders::findOrFail($orderID);
+        $total = $order->amount;
+        $newTotal = $total - $totalPrice;
+        $order->amount = $newTotal;
+        $order->save();
+    }
+
     public function removeUser($userID)
     {
         $user = Users::findOrFail($userID); //Find the record in the db of this id

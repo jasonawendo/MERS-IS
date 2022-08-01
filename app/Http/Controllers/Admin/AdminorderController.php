@@ -8,6 +8,11 @@ use App\Models\Rentals;
 
 class AdminorderController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function indexPaid()
     {
         $order = Orders::

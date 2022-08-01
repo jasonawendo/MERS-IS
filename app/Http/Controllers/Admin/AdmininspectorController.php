@@ -10,6 +10,11 @@ use App\Models\Inspectiontasks;
 
 class AdmininspectorController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function indexInspectors()
     {
         $inspector = Users::

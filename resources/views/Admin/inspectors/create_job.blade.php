@@ -47,7 +47,7 @@
 
                 <div class="input-box">
                   <span class="details">Inspection Date & Time</span>
-                  <input type="datetime-local" name="inspectionDateTime" min="{{$datetime}}" required> <br/><br/>
+                  <input type="datetime-local" name="inspectionDateTime" min="" required> <br/><br/>
                   <!-- <input type="date" name="inspectionDateTime" min="2021-06-25" max="2021-06-30" required> <br/><br/> -->
                   <!-- Min and max will be edited based on current date and a week(7 days) before rental was planned to begin. Maybe.  -->
                 </div>

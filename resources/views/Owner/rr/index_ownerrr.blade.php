@@ -16,7 +16,7 @@
       <table id="table" class="display table table-dark table-bordered table-hover table-responsive" cellspacing="0" width="100%">
         <thead class="table-head">
           <tr>
-            <th>Customer Rating ID</th>
+            <th>Owner Rating ID</th>
             <th>Customer ID</th> <!-- Receiving -->
             <th>Equipment</th> <!-- Must be a past rental -->
             <th>Rating</th> <!-- Both Star form and specific value -->
@@ -35,7 +35,7 @@
               <td class="review">{{$rr -> review}}</td>
               <td>{{$rr -> created_at}}</td>
               <td>
-                <a style="color:blue;" href="/Admin/ratingsreviews/customers/{{$rr -> customerID}}"><button class="btn btn-warning">View Customer ratings</button></a>
+                <a style="color:blue;" href="/Owner/customers/ratingsreviews/{{$rr -> id}}"><button class="btn btn-warning">View Customer ratings</button></a>
               </td>
             </tr>
           @endforeach

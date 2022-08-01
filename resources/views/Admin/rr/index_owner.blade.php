@@ -47,6 +47,11 @@
             </tbody>
           </table>
         </div>
+        <center>
+            <button class="btn btn-primary" onclick='window.print()'>Print</button>
+          </center>
+          <br><br>
+
     </div>
 </div>
  

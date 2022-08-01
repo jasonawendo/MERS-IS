@@ -24,7 +24,6 @@
 					<th>Total Price</th>
 					<th>Inspection Status</th>
 					<th>Owner Status</th>
-					<th>Insurance</th>
 					<th>Created at</th>
 					<th>Updated at</th>
       			</tr>
@@ -59,8 +58,6 @@
 							@else
 								<td style="color:red; font-weight: bold;">Rejected</td>
 							@endif
-
-							<td>{{$rental -> insurance}}</td>
 							<td>{{$rental -> created_at}}</td>
 							<td>{{$rental -> updated_at}}</td>
 						</tr>
@@ -68,6 +65,10 @@
             	</tbody>
         </table>
       </div>
+	  <center>
+            <button class="btn btn-primary" onclick='window.print()'>Print</button>
+          </center>
+		  <br><br>
   	</div>
 </div>
 
