@@ -10,22 +10,9 @@ use Illuminate\Support\Facades\Hash;
 
 class AdminuserController extends Controller
 {
-    public function indexRegrequests()
+    public function __construct()
     {
-        // $users = Users::all();
-        $user = Users::
-        whereNot('status', 'accepted')
-        ->where('isDeleted', '0')
-        ->where(function($query) 
-                {
-                    $query
-                    ->where('role', 'Customer')
-                    ->orWhere('role', 'Equipment Owner');
-                })
-        ->get();
-        // return view('Admin/users.index');
-        
-        return view('Admin/users.index', ['users' => $user], ['title' => 'View Registration Requests']);
+        $this->middleware('auth');
     }
 
     public function indexCustomers()

@@ -15,6 +15,11 @@ use App\Models\Inspectiontasks;
 
 class Admindashboard extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         //Registration requests count

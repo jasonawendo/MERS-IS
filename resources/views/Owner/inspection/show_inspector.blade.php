@@ -23,7 +23,6 @@
                 <p class="mb-0"><strong class="pr-1">Mobile Number:</strong> {{$user -> mobilenumber}}</p>
                 <p class="mb-0"><strong class="pr-1">Email Address:</strong> {{$user -> email}}</p>
                 <p class="mb-0"><strong class="pr-1">Address (County):</strong> {{$user -> address}}</p>
-                <a href="#"><button class="btn btn-info">Contact User</button></a>
               </div>
             </div>
           </div>

@@ -22,45 +22,26 @@
       <div class="logo"><a href="/">ME<span style="color: #E30613;">RS</span></a></div>
         <ul class="links">
           <li><a href="/">Home</a></li>
-          <li><a href="#">About</a></li>
+          <!-- <li><a href="#">About</a></li> -->
           <li>
-            <a href="/Customer/equipmentlistings" class="desktop-link">Equipment</a>
+            <a href="/equipmentlistings" class="desktop-link">Equipment</a>
   
           </li>
 
-          @if (Route::has('login'))
-                            @auth
-                            <x-app-layout>
-                                
-                            </x-app-layout>
-                   
-                        
-                    @else
-                    
-                      
-
-                        @if (Route::has('register'))
-
-                        <li>
-            <a href="{{ route('register') }}" class="desktop-link">Register</a>
- 
-          </li>
-          <li><a href="{{ route('login') }}">Login</a></li>
-                       
-                        @endif
-                    @endauth
-              
-            @endif
-          
           <li>
+            <a href="{{ route('register') }}" class="desktop-link">Register</a>
+          </li>
+          <li>
+            <a href="{{ route('login') }}">Login</a>
           </li>
           
         </ul>
       </div>
       
       <label for="show-search" class="search-icon"><i class="fas fa-search"></i></label>
-      <form action="#" class="search-box">
-        <input type="text" placeholder="Type Something to Search..." required>
+      <form action="/search" class="search-box">
+        @csrf
+        <input type="text" name="search" placeholder="Search for Equipment..." required>
         <button type="submit" class="go-icon"><i class="fas fa-long-arrow-alt-right"></i></button>
       </form>
     </nav>
@@ -106,8 +87,8 @@
             </div>
           </div>
         </div>
-        <div class="right box">
-          <h2>Contact us</h2> <!-- Just incase we have time to add this functionality -->
+        <!-- <div class="right box">
+          <h2>Contact us</h2> Just incase we have time to add this functionality
           <div class="content">
             <form action="#">
               <div class="email">
@@ -123,7 +104,7 @@
               </div>
             </form>
           </div>
-        </div>
+        </div> -->
       </div>
       <div class="bottom">
         <center>

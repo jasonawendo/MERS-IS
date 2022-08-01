@@ -38,21 +38,6 @@
             <h2 style="color:#fff; font-size:25pt; font-family:bebas neue">Dashboard</h2>
 		</center>
 
-		<div class="col-sm-6 col-xl-3 mb-4">
-			<div class="card">
-				<div class="rounded d-flex align-items-center justify-content-between p-4">
-        	<div class="icons">
-        		<i  class="fa fa-tty fa-3x"></i>
-        	</div>
-          	<div class="ms-3">
-              <p style="font-size:15pt; font-family:bebas neue;" >Registration requests</p>
-              <h6>{{$requests}}</h6> <br>
-              <a href="/Admin/users/requests" class="btn btn-light">Full Detail &nbsp; <i class="fa fa-arrow-right"></i></a>
-          	</div>
-        </div>
-			</div> 
-    </div>
-
     <div class="col-sm-6 col-xl-3 mb-4">
 			<div class="card">
 				<div class="rounded d-flex align-items-center justify-content-between p-4">
@@ -171,7 +156,11 @@
             <h6 class="mb-4">Equipment Listing Requests</h6>
             <canvas id="el-request"></canvas>
         </div>
-    </div>  
+    </div>
+	<center>
+            <button class="btn btn-primary" onclick='window.print()'>Print</button>
+          </center>
+          <br><br>  
 	</div>
 </section>
 

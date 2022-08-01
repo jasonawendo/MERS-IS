@@ -48,6 +48,10 @@
 		            <canvas id="ce-ratio"></canvas>
 		        </div>
 		    </div>
+            <center>
+            <button class="btn btn-primary" onclick='window.print()'>Print</button>
+          </center>
+          <br><br>
 		</div>
 	</section>
 

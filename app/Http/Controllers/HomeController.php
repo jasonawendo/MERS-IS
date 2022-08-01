@@ -17,6 +17,7 @@ class HomeController extends Controller
 
         $user = auth()->user();
         $usertype = $user->role;
+        $status = $user->isDeleted;
 
         if($usertype == 'Admin')
         {
@@ -27,14 +28,29 @@ class HomeController extends Controller
             return redirect('/Inspector/dashboard');
         }
 
-        else if($usertype == 'Equipment Owner')
+        if($status == 0)
         {
-            return redirect('/Owner/dashboard');
+            if($usertype == 'Equipment Owner')
+            {
+                return redirect('/Owner/dashboard');
+            }
+
+            else if($usertype == 'Customer')
+            {
+                return redirect('/Customer/home');
+            }
+
+            else
+            {
+                return view('OLDdashboard');
+            }
         }
 
-        else
+        else if(($status == 1))
         {
-            return view('OLDdashboard');
+            return redirect('/waiting');
         }
-    }
+        }
+
+        
 }

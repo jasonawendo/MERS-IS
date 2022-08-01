@@ -15,6 +15,11 @@ use App\Models\Inspectiontasks;
 
 class Reports extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         //Pending rental requests

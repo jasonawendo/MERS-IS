@@ -1,4 +1,4 @@
-@extends('layouts.layout') 
+@extends('layouts.customer') 
 <!-- Blade directive used to call a specific template/layout file -->
 
 @section('content') 
@@ -6,7 +6,30 @@
     referred to when determining which content to place where -->
 
 
-  
+  <!-- <style type="text/css">
+		.sortfilter a
+		{
+			display: inline-block;
+		}
+		.sortfilter button 
+		{
+		  border: none;
+		  outline: 0;
+		  padding: 12px;
+		  color: black;
+		  background-color: burlywood ;
+		  text-align: center;
+		  cursor: pointer;
+		  width: 100%;
+		  font-size: 10pt;
+		  border-radius: 5px;
+		  transition: 0.5s;
+		}
+		.sortfilter button:hover{
+			  background-color: #FF523B;
+			  transform: scale(1.1);
+			}
+	</style> -->
 
     <link rel="stylesheet" type="text/css" href="/css/equipment.css">
     <!-- Equipment section -->
@@ -27,10 +50,17 @@
         <div class="row">
           <div class="col-lg-7">
             <h2 class="section-heading"><strong>Equipment Listings</strong></h2>
-            <p class="mb-5">Explore all the equipment listing verified, checked and offered on our platform. Ensure you have an account before you can rent.</p>    
+            <p class="mb-5">{{ $msg }}</p>    
           </div>
         </div>
-        
+
+        <!-- <div class="sortfilter col-md-12">
+          <h4>Filter By:</h4>
+            <a style="padding-left:10px;" class="nav-link menu" href="womenproduct.php?productfilter=4"><button>Formal</button></a>
+            <a style="padding-left:10px;" class="nav-link menu" href="womenproduct.php?productfilter=5"><button>Casual</button></a>
+            <a style="padding-left:10px;" class="nav-link menu" href="womenproduct.php?productfilter=6"><button>Sports</button></a>
+        </div>
+        <br><br> -->
         <div class="row">
           @foreach($equipmentlisting as $equipment)
           @php 
@@ -81,24 +111,13 @@
                 <div>
                   <p>{{$equipment -> equipmentDescription}}.</p>
                   <!-- <p><a href="#" class="btn btn-success btn-sm">Rent Now</a></p> -->
-                  <p><a href="/Customer/equipmentlistings/{{$equipment -> equipmentID}}" class="btn btn-primary btn-sm">View listing</a></p>
+                  <p><a href="/Customer/equipmentlistings/{{$equipment -> equipmentID}}" class="btn btn-primary btn-xl">View listing</a></p>
                 </div>
               </div>
             </div>
           </div>
           @endforeach
 
-        </div>
-        <div class="row">
-          <div class="col-5">
-            <div class="custom-pagination">
-              <a href="#">1</a>
-              <span>2</span>
-              <a href="#">3</a>
-              <a href="#">4</a>
-              <a href="#">5</a>
-            </div>
-          </div>
         </div>
       </div>
     </div>

@@ -106,10 +106,9 @@
 						</div>
 						<p class="mb-0"><strong class="pr-1">Rating:</strong> {{$rating}} / 10</p>
 						<div class="d-flex v-card align-items-center">
-						<img src="/img/{{$rr -> profilepic}} " alt="Image" class="img-fluid mr-3">
 							<div class="author-name">
-							<span class="d-block"><strong class="pr-1">User #{{$rr -> ownerID}} - {{$rr -> fname}} {{$rr -> lname}}</strong></span>
-							<span class="d-block"> Concerning Rental: <strong class="pr-1">#{{$rr -> rentalID}} - {{$rr -> equipmentName}}</strong></span>
+							<span class="d-block"><strong class="pr-1">User #{{$rr -> ownerID}}  {{$rr -> fname}} {{$rr -> lname}}</strong></span>
+							<span class="d-block"> Concerning Rental: <strong class="pr-1">#{{$rr -> rentalID}}  {{$rr -> equipmentName}}</strong></span>
 							</div>
 						</div>
 						</div>

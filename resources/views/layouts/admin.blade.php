@@ -28,7 +28,6 @@
             <input type="checkbox" id="show-users">
             <label for="show-users">Users</label>
             <ul>
-              <li><a href="/Admin/users/requests">Registration Requests</a></li>
               <li><a href="/Admin/users/customers">Customers</a></li>
               <li><a href="/Admin/users/equipmentowners">Equipment Owners</a></li>
               <li><a href="/Admin/users/removed">Removed Users</a></li>
@@ -113,7 +112,6 @@
         <input type="text" placeholder="Type Something to Search..." required>
         <button type="submit" class="go-icon"><i class="fas fa-long-arrow-alt-right"></i></button>
       </form> -->
-      <label class="search-icon"><a style="color: #E30613;" href="#"><i class="fas fa-comment"></i></a></label>
     </nav>
   </div>
 </header>

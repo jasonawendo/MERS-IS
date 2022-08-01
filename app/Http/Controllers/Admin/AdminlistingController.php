@@ -7,6 +7,11 @@ use App\Models\Equipmentlisting; //Links the Equipmentlisting Model for us to us
 
 class AdminlistingController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function indexAccepted()
     {
         // return DB::table('users')

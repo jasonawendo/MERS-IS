@@ -15,7 +15,6 @@
 					<tr>
 						<th>Order ID</th>
 						<th>Customer ID</th>
-						<th>Payment Method</th>
 						<th>Payment Status</th>
 						<th>total</th>
 						<th>Created at</th>
@@ -31,7 +30,6 @@
 						<tr>
 							<td>{{$order -> orderID}}</td>
 							<td>{{$order -> customerID}}</td>
-							<td>{{$order -> paymentMethod}}</td>
 							<td class="icons">
 								@if($status == 1)
 									<i style="color:green;" class="fas fa-check"></i>
@@ -51,6 +49,10 @@
 				</tbody>
 			</table>
 		</div>
+		<center>
+            <button class="btn btn-primary" onclick='window.print()'>Print</button>
+          </center>
+		  <br><br>
 	</div>
 </div>
   @endsection

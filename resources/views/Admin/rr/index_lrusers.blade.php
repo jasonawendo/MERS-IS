@@ -21,7 +21,7 @@
                 <th>User ID</th>
                 <th>Profile image</th>
                 <th>Role</th>
-                <th>Full Name/th>
+                <th>Full Name</th>
                 <th>Mobile Number</th>
                 <th>Email Address</th>
                 <th>Average Rating</th><!-- By default, all new users will start with a rating of 4 -->
@@ -56,6 +56,10 @@
 
         </table>
       </div>
+      <center>
+            <button class="btn btn-primary" onclick='window.print()'>Print</button>
+          </center>
+          <br><br>
   </div>    
 </div>
   

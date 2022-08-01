@@ -16,16 +16,11 @@ use App\Http\Controllers\HomeController;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
 
-// Route::get('/user', function () {
-//     return view('user');
-// });
-// Route::get('/cart', function () {
-//     return view('cart');
-// });
+
+
+
+
 
 //-----------------------------------------------------AUTHENTICATION----------------------------------------------------------
 Route::middleware([
@@ -40,13 +35,83 @@ Route::middleware([
 #Route for user role based login
 Route::get('/redirect', [HomeController::class,'redirect']);
 
-//-----------------------------------------------CUSTOMER---------------------------------------------------------------------
-
+//-----------------------------------------------------GUEST----------------------------------------------------------
+//1. Equipment Listings
+use App\Http\Controllers\GuestController; //Added
+//Index Home
+Route::get('/', function () {
+    return view('home');
+});
+//Search
+Route::get('/search', [GuestController::class, 'search']);// Displays searched equipment listings
 //Index Equipment
+Route::get('/equipmentlistings', [GuestController::class, 'index']);// Displays all equipment listings
+//Show Equipment
+Route::get('/equipmentlistings/{equipmentID}', [GuestController::class, 'show']);// Displays Single equipment listing based on ID
+
+Route::get('/waiting', function () {
+    return view('waiting');
+});
+
+//-----------------------------------------------CUSTOMER---------------------------------------------------------------------
+//1. Equipment Listings
 use App\Http\Controllers\Customer\EquipmentlistingController; //Added
+//Index Home
+Route::get('Customer/home', [EquipmentlistingController::class, 'home']);
+//Search
+Route::get('Customer/search', [EquipmentlistingController::class, 'search']);// Displays searched equipment listings
+//Index Equipment
 Route::get('Customer/equipmentlistings', [EquipmentlistingController::class, 'index']);// Displays all equipment listings
 //Show Equipment
 Route::get('Customer/equipmentlistings/{equipmentID}', [EquipmentlistingController::class, 'show']);// Displays Single equipment listing based on ID
+Route::get('Customer/owner/profile/{userID}', [EquipmentlistingController::class, 'showOwner']);
+
+//2. Wallet
+use App\Http\Controllers\Customer\CustomerorderContoller; //Added
+Route::get('Customer/wallet', [CustomerorderContoller::class, 'viewWallet']);
+Route::get('Customer/wallet/create', [CustomerorderContoller::class, 'createWallet']);
+Route::post('Customer/wallet/create', [CustomerorderContoller::class, 'addWallet']);
+Route::post('Customer/wallet/update', [CustomerorderContoller::class, 'updateWallet']);
+
+//3. Rental
+use App\Http\Controllers\Customer\CustomerrentalController; //Added
+//Create Rental request
+Route::get('Customer/rental/createrequest/{equipmentID}/{rentRate}', [CustomerrentalController::class, 'createRequest']);
+Route::post('Customer/rental/createrequest', [CustomerrentalController::class, 'storeRequest']);
+Route::get('Customer/rental/cart', [CustomerrentalController::class, 'indexCart']);
+//Actions
+Route::get('Customer/rentalrequest/remove/{rentalID}', [CustomerrentalController::class, 'deleteRequest']);
+Route::get('Customer/rental/createorder/{amount}', [CustomerrentalController::class, 'createOrder']); //Creates new order and assigns selcted rentals to that order
+
+//3.5 Orders
+Route::get('Customer/orders/waiting', [CustomerorderContoller::class, 'indexWaiting']);
+Route::get('Customer/orders/pending', [CustomerorderContoller::class, 'indexPending']);
+Route::get('Customer/orders/paid', [CustomerorderContoller::class, 'indexPaid']);
+Route::get('Customer/orders/rejected', [CustomerorderContoller::class, 'indexRejected']);
+//Show
+Route::get('Customer/orders/{orderID}', [CustomerorderContoller::class, 'showOrder']);
+//Pay
+Route::get('Customer/orders/{orderID}/{amount}', [CustomerorderContoller::class, 'payOrder']);
+
+
+
+//5. Ratings and Reviews
+use App\Http\Controllers\Customer\CustomerrrController; //Added
+//Index
+Route::get('Customer/owners/ratingsreviews', [CustomerrrController::class, 'indexRROwners']);
+Route::get('Customer/owners/ratingsreviews/pending', [CustomerrrController::class, 'indexRRPendingOwners']);
+Route::get('Customer/my/ratingsreviews', [CustomerrrController::class, 'indexMyRR']);
+//Show
+Route::get('Customer/owners/ratingsreviews/{userID}', [CustomerrrController::class, 'showOwners']);
+//Create - Give Rating and Reviews
+Route::get('Customer/owners/ratingsreviews/create/{userID}/{rentalID}', [CustomerrrController::class, 'createRR']);
+Route::post('Customer/owners/ratingsreviews/create', [CustomerrrController::class, 'saveRR']);
+
+//6. Profile
+use App\Http\Controllers\Customer\Customerprofile; //Added
+Route::get('Customer/profile/{userID}', [Customerprofile::class, 'show']);
+Route::get('Customer/profile/edit/{userID}', [Customerprofile::class, 'edit']);
+Route::post('Customer/profile/edit', [Customerprofile::class, 'store']);
 
 //---------------------------------------------------ADMIN---------------------------------------------------------------------
 //1. Dashboard

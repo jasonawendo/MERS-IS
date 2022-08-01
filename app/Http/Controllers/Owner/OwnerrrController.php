@@ -13,6 +13,11 @@ use Carbon\Carbon;
 
 class OwnerrrController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function indexRRCustomers()
     {
         $user = auth()->user();
@@ -108,10 +113,7 @@ class OwnerrrController extends Controller
         $rr->rentalID = $rentalID;
         $rr->save();
 
-        //Rental Is Rated
-        $rental = Rentals::findOrFail($rentalID); //Find the record in the db of this id
-        $rental->isRated = 1;
-        $rental->save();
+
 
         //Update User rating
         $user = Users::findOrFail($customerID); //Find the record in the db of this id

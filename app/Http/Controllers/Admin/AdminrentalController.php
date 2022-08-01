@@ -8,6 +8,11 @@ use Carbon\Carbon;
 
 class AdminrentalController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         $rental = Rentals::

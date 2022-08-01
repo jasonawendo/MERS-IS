@@ -12,6 +12,11 @@ use Carbon\Carbon;
 
 class InspectorjobController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function indexPastJobs()
     {
         $user = auth()->user();
@@ -156,6 +161,9 @@ class InspectorjobController extends Controller
         $rental = Rentals::findOrFail($rentalID);
         $rental->InspectionStatus= "accepted";
         $rental->save();
+        $orderID = $rental -> orderID;
+        $this->editOrderStatusBasedOnRentals($orderID); //Custom function that changes order to isApproved if all its rentals have been accepted or
+        //rejected by the Equipment owner or Quality Inspector
 
           return redirect("/Inspectors/jobs/$IJID")->with('msg','Inspection task has been completed and corresponding rental request has been approved');
         // error_log($IJID);
@@ -179,6 +187,11 @@ class InspectorjobController extends Controller
         $rental = Rentals::findOrFail($rentalID);
         $rental->InspectionStatus= "rejected";
         $rental->save();
+        $orderID = $rental -> orderID;
+        $totalPrice = $rental -> totalPrice;
+        $this->deductTotalOnRentalReject($orderID, $totalPrice); //Rental will be subtracted from total order
+        $this->editOrderStatusBasedOnRentals($orderID); //Custom functions that changes order to isApproved if all its rentals have been accepted or
+        //rejected by the Equipment owner or Quality Inspector
 
          return redirect("/Inspectors/jobs/$IJID")->with('msg','Inspection task has been completed and corresponding rental request has been rejected');
         // error_log($IJID);
